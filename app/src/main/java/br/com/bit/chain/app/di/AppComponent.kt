@@ -5,7 +5,9 @@ import br.com.bit.chain.charts.di.ActivityBindingModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
+import javax.inject.Singleton
 
+@Singleton
 @Component(
     modules = [
         AndroidInjectionModule::class,
