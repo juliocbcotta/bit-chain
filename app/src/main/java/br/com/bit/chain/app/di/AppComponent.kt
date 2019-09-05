@@ -2,6 +2,7 @@ package br.com.bit.chain.app.di
 
 import br.com.bit.chain.app.BitApplication
 import br.com.bit.chain.charts.di.ActivityBindingModule
+import br.com.bit.chain.networking.di.NetworkingModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -11,7 +12,9 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AndroidInjectionModule::class,
-        ActivityBindingModule::class
+        AppModule::class,
+        ActivityBindingModule::class,
+        NetworkingModule::class
     ]
 )
 interface AppComponent {
