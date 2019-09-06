@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="br.com.bit.chain">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name=".app.BitApplication"
         android:allowBackup="true"
