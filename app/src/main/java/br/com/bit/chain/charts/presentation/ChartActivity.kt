@@ -46,6 +46,9 @@ class ChartActivity : AppCompatActivity() {
     }
 
     private fun populateChartView(chartData: ChartData) {
+        cardview.visibility = View.VISIBLE
+        titleView.text = chartData.name
+        subtitleView.text = chartData.description
 
         val entryValues = chartData.values.map { value ->
             Entry(value.x, value.y)
@@ -59,7 +62,6 @@ class ChartActivity : AppCompatActivity() {
         val lineData = LineData(dataSet)
 
         chart.apply {
-            visibility = View.VISIBLE
             setPinchZoom(false)
             setTouchEnabled(false)
             description.isEnabled = false
