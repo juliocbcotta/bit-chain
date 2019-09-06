@@ -1,6 +1,6 @@
 package br.com.bit.chain.charts.data.repository
 
-import br.com.bit.chain.charts.data.repository.services.ChartRemoteService
+import br.com.bit.chain.charts.data.repository.services.ChartDataRemoteService
 import com.nhaarman.mockitokotlin2.given
 import io.reactivex.Single
 import org.junit.Test
@@ -11,35 +11,35 @@ import org.mockito.junit.MockitoJUnitRunner
 import java.io.IOException
 
 @RunWith(MockitoJUnitRunner::class)
-class ChartRepositoryImplTest {
+class ChartDataRepositoryImplTest {
 
     @Mock
-    lateinit var remoteService: ChartRemoteService
+    lateinit var remoteService: ChartDataRemoteService
 
     @InjectMocks
     lateinit var repository: ChartRepositoryImpl
 
 
     @Test
-    fun shouldFetchChart() {
+    fun shouldFetchChartData() {
 
         given { remoteService.fetchChart() }
-            .willReturn(Single.just(chartResponse))
+            .willReturn(Single.just(chartDataResponse))
 
-        repository.getChart()
+        repository.getChartData()
             .test()
-            .assertValue(chart)
+            .assertValue(chartData)
             .assertComplete()
     }
 
     @Test
-    fun shouldFailToFetchChart() {
+    fun shouldFailToFetchChartData() {
         val exception = IOException()
 
         given { remoteService.fetchChart() }
             .willReturn(Single.error(exception))
 
-        repository.getChart()
+        repository.getChartData()
             .test()
             .assertError(exception)
 

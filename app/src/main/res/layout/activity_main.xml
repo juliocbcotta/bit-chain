@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".charts.MainActivity">
 
-    <TextView
-        android:id="@+id/world"
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chartData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

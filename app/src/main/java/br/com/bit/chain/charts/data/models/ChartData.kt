@@ -1,8 +1,8 @@
 package br.com.bit.chain.charts.data.models
 
-data class Chart(
+data class ChartData(
     val name: String,
     val unit: String,
     val description: String,
-    val values: List<ChartValue>
+    val values: List<ChartDataValue>
 )

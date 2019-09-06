@@ -3,16 +3,22 @@ package br.com.bit.chain.charts
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.com.bit.chain.R
-import br.com.bit.chain.app.BitApplication
+import br.com.bit.chain.charts.data.models.ChartData
 import br.com.bit.chain.charts.data.repository.ChartRepository
 import dagger.android.AndroidInjection
+import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
+import javax.inject.Named
 
 class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var repository: ChartRepository
+
+    @Inject
+    @Named("MainScheduler")
+    lateinit var mainScheduler: Scheduler
 
     private val disposables = CompositeDisposable()
 
@@ -20,12 +26,20 @@ class MainActivity : AppCompatActivity() {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        disposables.add(repository.getChart().subscribe({ chart ->
-            println(chart)
+        disposables.add(
+            repository.getChartData()
+                .observeOn(mainScheduler)
+                .subscribe({ chart ->
+                    populateChartView(chart)
 
-        }, {
-            it.printStackTrace()
-        }))
+                }, {
+                    it.printStackTrace()
+                })
+        )
+    }
+
+    private fun populateChartView(chartData: ChartData) {
+
     }
 
     override fun onDestroy() {

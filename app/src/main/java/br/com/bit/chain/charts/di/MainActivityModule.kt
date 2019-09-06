@@ -2,7 +2,7 @@ package br.com.bit.chain.charts.di
 
 import br.com.bit.chain.charts.data.repository.ChartRepository
 import br.com.bit.chain.charts.data.repository.ChartRepositoryImpl
-import br.com.bit.chain.charts.data.repository.services.ChartRemoteService
+import br.com.bit.chain.charts.data.repository.services.ChartDataRemoteService
 import br.com.bit.chain.di.ActivityScope
 import dagger.Module
 import dagger.Provides
@@ -18,5 +18,5 @@ class MainActivityModule {
 
     @ActivityScope
     @Provides
-    fun provideService(retrofit: Retrofit): ChartRemoteService = retrofit.create()
+    fun provideService(retrofit: Retrofit): ChartDataRemoteService = retrofit.create()
 }

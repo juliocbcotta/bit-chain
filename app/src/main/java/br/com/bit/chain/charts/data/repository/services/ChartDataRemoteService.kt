@@ -3,7 +3,7 @@ package br.com.bit.chain.charts.data.repository.services
 import io.reactivex.Single
 import retrofit2.http.GET
 
-interface ChartRemoteService {
+interface ChartDataRemoteService {
     @GET("market-price")
-    fun fetchChart(): Single<ChartResponse>
+    fun fetchChart(): Single<ChartDataResponse>
 }

@@ -1,28 +1,28 @@
 package br.com.bit.chain.charts.data.repository
 
-import br.com.bit.chain.charts.data.models.Chart
-import br.com.bit.chain.charts.data.models.ChartValue
-import br.com.bit.chain.charts.data.repository.services.ChartResponse
-import br.com.bit.chain.charts.data.repository.services.ChartValueResponse
+import br.com.bit.chain.charts.data.models.ChartData
+import br.com.bit.chain.charts.data.models.ChartDataValue
+import br.com.bit.chain.charts.data.repository.services.ChartDataResponse
+import br.com.bit.chain.charts.data.repository.services.ChartDataValueResponse
 
-val chartResponse = ChartResponse(
+val chartDataResponse = ChartDataResponse(
     name = "name",
     unit = "unit",
     description = "description",
     values = listOf(
-        ChartValueResponse(
+        ChartDataValueResponse(
             x = 1.0f,
             y = 2.0f
         )
     )
 )
 
-val chart = Chart(
+val chartData = ChartData(
     name = "name",
     unit = "unit",
     description = "description",
     values = listOf(
-        ChartValue(
+        ChartDataValue(
             x = 1.0f,
             y = 2.0f
         )
