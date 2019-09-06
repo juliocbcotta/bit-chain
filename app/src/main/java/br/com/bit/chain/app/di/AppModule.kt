@@ -1,5 +1,6 @@
 package br.com.bit.chain.app.di
 
+import br.com.bit.chain.BuildConfig
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler
@@ -17,6 +18,11 @@ class AppModule {
         // TODO: Extract to build.gradle buildTypes
         return "https://api.blockchain.info/charts/"
     }
+
+    @Singleton
+    @Named("LOGGABLE")
+    @Provides
+    fun provideLoggable(): Boolean = BuildConfig.DEBUG
 
     @Singleton
     @Named("MainScheduler")
