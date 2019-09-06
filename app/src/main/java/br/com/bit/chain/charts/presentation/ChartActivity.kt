@@ -1,4 +1,4 @@
-package br.com.bit.chain.charts
+package br.com.bit.chain.charts.presentation
 
 import android.os.Bundle
 import android.view.View
@@ -15,11 +15,11 @@ import com.github.mikephil.charting.formatter.LargeValueFormatter
 import dagger.android.AndroidInjection
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_chart.*
 import javax.inject.Inject
 import javax.inject.Named
 
-class MainActivity : AppCompatActivity() {
+class ChartActivity : AppCompatActivity() {
 
     @Inject
     lateinit var repository: ChartRepository
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_chart)
         disposables.add(
             repository.getChartData()
                 .observeOn(mainScheduler)

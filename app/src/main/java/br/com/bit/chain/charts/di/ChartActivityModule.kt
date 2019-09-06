@@ -10,7 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.create
 
 @Module
-class MainActivityModule {
+class ChartActivityModule {
 
     @ActivityScope
     @Provides
