@@ -1,5 +1,6 @@
 package br.com.bit.chain.charts.di
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.bit.chain.app.di.ViewModelKey
 import br.com.bit.chain.charts.data.repository.ChartRepository
@@ -8,11 +9,13 @@ import br.com.bit.chain.charts.data.repository.cache.ChartDataLocalCache
 import br.com.bit.chain.charts.data.repository.cache.ChartDataLocalCacheImpl
 import br.com.bit.chain.charts.data.repository.services.ChartDataRemoteService
 import br.com.bit.chain.charts.presentation.ChartActivityViewModel
+import br.com.bit.chain.charts.presentation.State
 import br.com.bit.chain.di.ActivityScope
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
+import io.reactivex.disposables.CompositeDisposable
 import retrofit2.Retrofit
 import retrofit2.create
 
@@ -30,6 +33,14 @@ class ChartActivityModule {
     @ActivityScope
     @Provides
     fun provideLocalCache(impl: ChartDataLocalCacheImpl): ChartDataLocalCache = impl
+
+    @ActivityScope
+    @Provides
+    fun provideStateLiveData(): MutableLiveData<State> = MutableLiveData()
+
+    @ActivityScope
+    @Provides
+    fun provideDisposables(): CompositeDisposable = CompositeDisposable()
 }
 
 @Module

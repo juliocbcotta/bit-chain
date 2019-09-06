@@ -1,5 +1,6 @@
 package br.com.bit.chain.charts.presentation
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.bit.chain.charts.data.models.ChartData
@@ -12,37 +13,64 @@ import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 import javax.inject.Named
 
+sealed class State {
+    object Loading : State()
+    data class Success(val uiModel: ChartUiModel) : State()
+    object Error : State()
+    object End : State()
+}
+
+sealed class Action {
+    object Load : Action()
+    object TryAgain : Action()
+    object Exit : Action()
+}
+
 class ChartActivityViewModel @Inject constructor(
+    private val realState: MutableLiveData<State>,
+    private val disposables: CompositeDisposable,
     @Named("MainScheduler")
     private val mainScheduler: Scheduler,
+    @Named("IOScheduler")
+    private val ioScheduler: Scheduler,
     private val repository: ChartRepository
 ) : ViewModel() {
 
-    val onData = MutableLiveData<ChartUiModel>()
 
-    private val disposables = CompositeDisposable()
+    // NOTE: The public state is read-only.
+    val state: LiveData<State> = realState
 
     init {
-        loadChart()
+        onAction(Action.Load)
     }
 
-    private fun loadChart() {
-        disposables.add(repository.getChartData()
-            .map {
-                it.toChartUiModel()
-            }
-            .observeOn(mainScheduler)
-            .subscribe({ uiModel ->
-                onData.value = uiModel
-            }, {
-                it.printStackTrace()
-            })
-        )
+    fun onAction(action: Action) {
+        when (action) {
+            Action.Load -> loadChart()
+            Action.TryAgain -> loadChart()
+            Action.Exit -> exit()
+        }
     }
 
     override fun onCleared() {
         super.onCleared()
         disposables.clear()
+    }
+
+    private fun loadChart() {
+        realState.value = State.Loading
+        disposables.add(repository.getChartData()
+            .map {
+                it.toChartUiModel()
+            }
+            .subscribeOn(ioScheduler)
+            .observeOn(mainScheduler)
+            .subscribe({ uiModel ->
+                realState.value = State.Success(uiModel)
+            }, {
+                realState.value = State.Error
+            })
+        )
     }
 
     private fun ChartData.toChartUiModel(): ChartUiModel {
@@ -60,6 +88,10 @@ class ChartActivityViewModel @Inject constructor(
             x = x,
             y = y
         )
+    }
+
+    private fun exit() {
+        realState.value = State.End
     }
 
 }
