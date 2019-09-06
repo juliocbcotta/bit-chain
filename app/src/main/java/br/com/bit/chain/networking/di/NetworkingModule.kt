@@ -30,9 +30,10 @@ class NetworkingModule {
     fun provideOkHttpClient(logLevel: Level): OkHttpClient {
 
         return OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().apply {
-                level = logLevel
-            })
+            .addInterceptor(HttpLoggingInterceptor()
+                .apply {
+                    level = logLevel
+                })
             .build()
     }
 

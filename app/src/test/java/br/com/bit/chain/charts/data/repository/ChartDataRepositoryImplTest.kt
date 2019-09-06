@@ -1,5 +1,7 @@
 package br.com.bit.chain.charts.data.repository
 
+import br.com.bit.chain.charts.chartData
+import br.com.bit.chain.charts.chartDataResponse
 import br.com.bit.chain.charts.data.repository.services.ChartDataRemoteService
 import com.nhaarman.mockitokotlin2.given
 import io.reactivex.Single
