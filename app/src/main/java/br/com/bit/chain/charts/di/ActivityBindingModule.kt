@@ -7,9 +7,9 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class ActivityBindingModule {
-    @ContributesAndroidInjector(modules = [
-        ChartActivityModule::class
-    ])
+    @ContributesAndroidInjector(
+        modules = [ChartActivityModule::class]
+    )
     @ActivityScope
     abstract fun bindChartActivity(): ChartActivity
 }
