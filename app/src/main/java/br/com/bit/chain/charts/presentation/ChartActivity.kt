@@ -1,21 +1,17 @@
 package br.com.bit.chain.charts.presentation
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import br.com.bit.chain.R
 import br.com.bit.chain.charts.data.models.ChartData
+import br.com.bit.chain.charts.data.models.ChartDataValue
 import br.com.bit.chain.charts.data.repository.ChartRepository
-import com.github.mikephil.charting.components.Legend.LegendHorizontalAlignment.LEFT
-import com.github.mikephil.charting.components.Legend.LegendVerticalAlignment.BOTTOM
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.formatter.LargeValueFormatter
+import br.com.bit.chain.components.chart.ChartUiModel
+import br.com.bit.chain.components.chart.ChartUiValueModel
+import br.com.bit.chain.components.chart.ChartView
 import dagger.android.AndroidInjection
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_chart.*
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -33,62 +29,42 @@ class ChartActivity : AppCompatActivity() {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chart)
-        disposables.add(
-            repository.getChartData()
-                .observeOn(mainScheduler)
-                .subscribe({ chart ->
-                    populateChartView(chart)
+        val chartView = findViewById<ChartView>(R.id.chartView)
+        disposables.add(repository.getChartData()
+            .observeOn(mainScheduler)
+            .map {
+                it.toChartUiModel()
+            }
+            .subscribe({ uiModel ->
+                chartView.setUiModel(uiModel)
 
-                }, {
-                    it.printStackTrace()
-                })
+            }, {
+                it.printStackTrace()
+            })
         )
-    }
-
-    private fun populateChartView(chartData: ChartData) {
-        cardview.visibility = View.VISIBLE
-        titleView.text = chartData.name
-        subtitleView.text = chartData.description
-
-        val entryValues = chartData.values.map { value ->
-            Entry(value.x, value.y)
-        }
-        val dataSet = LineDataSet(entryValues, "")
-            .apply {
-                setDrawValues(false)
-                setDrawCircles(false)
-                lineWidth = 2.0f
-            }
-        val lineData = LineData(dataSet)
-
-        chart.apply {
-            setPinchZoom(false)
-            setTouchEnabled(false)
-            description.isEnabled = false
-            axisRight.isEnabled = false
-            xAxis.isEnabled = false
-
-            setDrawBorders(false)
-            setDrawGridBackground(false)
-
-            axisLeft.apply {
-                setDrawZeroLine(false)
-                valueFormatter = LargeValueFormatter()
-            }
-            data = lineData
-
-            legend.apply {
-                setDrawInside(false)
-                verticalAlignment = BOTTOM
-                horizontalAlignment = LEFT
-            }
-        }
-        chart.invalidate()
-
     }
 
     override fun onDestroy() {
         super.onDestroy()
         disposables.clear()
     }
+
+    private fun ChartData.toChartUiModel(): ChartUiModel {
+        return ChartUiModel(
+            title = name,
+            subtitle = description,
+            values = values.map {
+                it.toChartValueUiModel()
+            }
+        )
+    }
+
+    private fun ChartDataValue.toChartValueUiModel(): ChartUiValueModel {
+        return ChartUiValueModel(
+            x = x,
+            y = y
+        )
+    }
+
 }
+
