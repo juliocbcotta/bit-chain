@@ -4,6 +4,6 @@ import io.reactivex.Single
 import retrofit2.http.GET
 
 interface ChartRemoteService {
-    @GET("/market-price")
+    @GET("market-price")
     fun fetchChart(): Single<ChartResponse>
 }
