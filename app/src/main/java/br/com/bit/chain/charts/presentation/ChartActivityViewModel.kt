@@ -6,7 +6,7 @@ import br.com.bit.chain.charts.data.models.ChartData
 import br.com.bit.chain.charts.data.models.ChartDataValue
 import br.com.bit.chain.charts.data.repository.ChartRepository
 import br.com.bit.chain.components.chart.ChartUiModel
-import br.com.bit.chain.components.chart.ChartUiValueModel
+import br.com.bit.chain.components.chart.ChartValueUiModel
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -56,8 +56,8 @@ class ChartActivityViewModel @Inject constructor(
         )
     }
 
-    private fun ChartDataValue.toChartValueUiModel(): ChartUiValueModel {
-        return ChartUiValueModel(
+    private fun ChartDataValue.toChartValueUiModel(): ChartValueUiModel {
+        return ChartValueUiModel(
             x = x,
             y = y
         )

@@ -1,6 +1,6 @@
 package br.com.bit.chain.components.chart
 
-data class ChartUiValueModel(
+data class ChartValueUiModel(
     val x: Float,
     val y: Float
 )

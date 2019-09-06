@@ -36,7 +36,7 @@ class ChartView @JvmOverloads constructor(
         this.subtitle.text = subtitle
     }
 
-    private fun setChartData(values: List<ChartUiValueModel>) {
+    private fun setChartData(values: List<ChartValueUiModel>) {
         val entryValues = values.map { value ->
             Entry(value.x, value.y)
         }

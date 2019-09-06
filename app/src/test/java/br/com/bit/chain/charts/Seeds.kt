@@ -1,9 +1,11 @@
-package br.com.bit.chain.charts.data.repository
+package br.com.bit.chain.charts
 
 import br.com.bit.chain.charts.data.models.ChartData
 import br.com.bit.chain.charts.data.models.ChartDataValue
 import br.com.bit.chain.charts.data.repository.services.ChartDataResponse
 import br.com.bit.chain.charts.data.repository.services.ChartDataValueResponse
+import br.com.bit.chain.components.chart.ChartUiModel
+import br.com.bit.chain.components.chart.ChartValueUiModel
 
 val chartDataResponse = ChartDataResponse(
     name = "name",
@@ -23,6 +25,17 @@ val chartData = ChartData(
     description = "description",
     values = listOf(
         ChartDataValue(
+            x = 1.0f,
+            y = 2.0f
+        )
+    )
+)
+
+val chartUiModel = ChartUiModel(
+    title = "name",
+    subtitle = "description",
+    values = listOf(
+        ChartValueUiModel(
             x = 1.0f,
             y = 2.0f
         )
