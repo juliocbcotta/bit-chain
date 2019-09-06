@@ -24,16 +24,19 @@ class ChartDataLocalCacheImpl @Inject constructor(
             val json = prefs.getString(key, null)
             if (json == null) {
                 emitter.onComplete()
+            } else {
+                val data = gson.fromJson(json, ChartDataResponse::class.java)
+                emitter.onSuccess(data)
             }
-            val data = gson.fromJson(json, ChartDataResponse::class.java)
-            emitter.onSuccess(data)
         }
     }
 
     override fun save(chartDataResponse: ChartDataResponse): Completable {
         return Completable.fromAction {
             val json = gson.toJson(chartDataResponse)
-            prefs.edit().putString(key, json).apply()
+            prefs.edit()
+                .putString(key, json)
+                .apply()
         }
     }
 }
