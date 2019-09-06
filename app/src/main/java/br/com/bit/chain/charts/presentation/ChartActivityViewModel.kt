@@ -28,13 +28,12 @@ class ChartActivityViewModel @Inject constructor(
 
     private fun loadChart() {
         disposables.add(repository.getChartData()
-            .observeOn(mainScheduler)
             .map {
                 it.toChartUiModel()
             }
+            .observeOn(mainScheduler)
             .subscribe({ uiModel ->
                 onData.value = uiModel
-
             }, {
                 it.printStackTrace()
             })

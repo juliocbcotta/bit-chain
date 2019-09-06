@@ -1,5 +1,6 @@
 package br.com.bit.chain.networking.di
 
+import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -13,6 +14,14 @@ import javax.inject.Singleton
 
 @Module
 class NetworkingModule {
+
+    @Provides
+    @Singleton
+    fun provideGson(): Gson {
+        // TODO: Decouple Gson for local cache and Gson for http serialization.
+        return Gson()
+    }
+
     @Provides
     @Singleton
     fun provideLogLevel(
@@ -41,6 +50,7 @@ class NetworkingModule {
     @Singleton
     fun provideRetrofit(
         client: OkHttpClient,
+        gson: Gson,
         @Named("BASE_URL")
         baseUrl: String
     ): Retrofit {
@@ -49,7 +59,7 @@ class NetworkingModule {
             .client(client)
             .baseUrl(baseUrl)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 }

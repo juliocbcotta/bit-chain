@@ -20,6 +20,7 @@ class ChartActivity : AppCompatActivity() {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chart)
+
         val viewModel = ViewModelProviders.of(this, factory).get(ChartActivityViewModel::class.java)
         val chartView = findViewById<ChartView>(R.id.chartView)
 
