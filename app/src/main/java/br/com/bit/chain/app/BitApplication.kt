@@ -20,7 +20,7 @@ class BitApplication : Application(), HasAndroidInjector {
         super.onCreate()
         DaggerAppComponent
             .factory()
-            .create(this)
+            .create(this, "https://api.blockchain.info/charts/")
             .inject(this)
     }
 }

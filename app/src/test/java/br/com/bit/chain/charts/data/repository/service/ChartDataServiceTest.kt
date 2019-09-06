@@ -1,6 +1,7 @@
 package br.com.bit.chain.charts.data.repository.service
 
 import br.com.bit.chain.charts.chartDataResponse
+import br.com.bit.chain.charts.chartDataResponseJson
 import br.com.bit.chain.charts.data.repository.services.ChartDataRemoteService
 import br.com.bit.chain.networking.di.NetworkingModule
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
@@ -26,21 +27,7 @@ class ChartDataServiceTest {
     fun `should execute request properly`() {
         val server = MockWebServer()
         server.enqueue(
-            MockResponse().setBody(
-                """
-                    {
-                        "name": "name",
-                        "description" : "description",
-                        "unit" : "unit",
-                        "values" :[
-                                {
-                                 "x" : 1.0,
-                                 "y" : 2.0
-                                }
-                            ]
-                    }
-            """.trimMargin()
-            )
+            MockResponse().setBody(chartDataResponseJson)
         )
         server.start()
         val retrofit = createRetrofit(server.url("/").toString())

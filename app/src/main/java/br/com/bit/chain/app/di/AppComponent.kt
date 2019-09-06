@@ -6,6 +6,7 @@ import br.com.bit.chain.networking.di.NetworkingModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Singleton
@@ -23,7 +24,8 @@ interface AppComponent {
 
     @Component.Factory
     interface Factory {
-        fun create(@BindsInstance app: BitApplication): AppComponent
+        fun create(@BindsInstance app: BitApplication,
+                   @Named("BASE_URL") @BindsInstance baseUrl: String): AppComponent
     }
 
 }

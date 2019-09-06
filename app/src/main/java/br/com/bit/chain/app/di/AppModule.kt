@@ -14,13 +14,6 @@ import javax.inject.Singleton
 
 @Module
 class AppModule {
-    @Singleton
-    @Named("BASE_URL")
-    @Provides
-    fun provideBaseUrl(): String {
-        // TODO: Extract to build.gradle buildTypes
-        return "https://api.blockchain.info/charts/"
-    }
 
     @Singleton
     @Named("LOGGABLE")
