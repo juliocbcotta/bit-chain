@@ -9,6 +9,7 @@ import br.com.bit.chain.components.chart.ChartUiModel
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
+import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import org.junit.Rule
@@ -32,7 +33,7 @@ class ChartActivityViewModelTest {
 
     @Test
     fun shouldNotifyAChartUiModel() {
-        given { repository.getChartData() }.willReturn(Single.just(chartData))
+        given { repository.getChartData() }.willReturn(Observable.just(chartData))
 
         val viewModel = ChartActivityViewModel(mainScheduler, repository)
         viewModel.onData.observeForever(onData)

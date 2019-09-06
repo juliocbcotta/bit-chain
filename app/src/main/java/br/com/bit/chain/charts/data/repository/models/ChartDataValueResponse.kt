@@ -1,4 +1,4 @@
-package br.com.bit.chain.charts.data.repository.services
+package br.com.bit.chain.charts.data.repository.models
 
 data class ChartDataValueResponse(
     val x: Float,

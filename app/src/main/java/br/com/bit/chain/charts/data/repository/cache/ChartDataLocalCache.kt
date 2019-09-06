@@ -1,6 +1,7 @@
-package br.com.bit.chain.charts.data.repository.services
+package br.com.bit.chain.charts.data.repository.cache
 
 import android.content.SharedPreferences
+import br.com.bit.chain.charts.data.repository.models.ChartDataResponse
 import com.google.gson.Gson
 import io.reactivex.Completable
 import io.reactivex.Maybe
@@ -11,7 +12,7 @@ interface ChartDataLocalCache {
     fun save(chartDataResponse: ChartDataResponse): Completable
 }
 
-// TODO: Decouple models from network and cache.
+// TODO: Decouple models and Gson from network and cache.
 class ChartDataLocalCacheImpl @Inject constructor(
     private val prefs: SharedPreferences,
     private val gson: Gson

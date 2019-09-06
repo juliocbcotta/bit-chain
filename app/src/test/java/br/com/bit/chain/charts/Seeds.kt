@@ -2,8 +2,8 @@ package br.com.bit.chain.charts
 
 import br.com.bit.chain.charts.data.models.ChartData
 import br.com.bit.chain.charts.data.models.ChartDataValue
-import br.com.bit.chain.charts.data.repository.services.ChartDataResponse
-import br.com.bit.chain.charts.data.repository.services.ChartDataValueResponse
+import br.com.bit.chain.charts.data.repository.models.ChartDataResponse
+import br.com.bit.chain.charts.data.repository.models.ChartDataValueResponse
 import br.com.bit.chain.components.chart.ChartUiModel
 import br.com.bit.chain.components.chart.ChartValueUiModel
 

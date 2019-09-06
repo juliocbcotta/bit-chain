@@ -2,10 +2,10 @@ package br.com.bit.chain.charts.data.repository
 
 import br.com.bit.chain.charts.data.models.ChartData
 import br.com.bit.chain.charts.data.models.ChartDataValue
-import br.com.bit.chain.charts.data.repository.services.ChartDataLocalCache
+import br.com.bit.chain.charts.data.repository.cache.ChartDataLocalCache
 import br.com.bit.chain.charts.data.repository.services.ChartDataRemoteService
-import br.com.bit.chain.charts.data.repository.services.ChartDataResponse
-import br.com.bit.chain.charts.data.repository.services.ChartDataValueResponse
+import br.com.bit.chain.charts.data.repository.models.ChartDataResponse
+import br.com.bit.chain.charts.data.repository.models.ChartDataValueResponse
 import io.reactivex.Observable
 import javax.inject.Inject
 
