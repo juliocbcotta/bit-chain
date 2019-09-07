@@ -14,8 +14,10 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 abstract class BaseTest {
-    private val app =
-        InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as BitApplication
+    private val app = InstrumentationRegistry.getInstrumentation()
+        .targetContext
+        .applicationContext as BitApplication
+
     protected val server = MockWebServer()
 
     @Before
@@ -30,7 +32,10 @@ abstract class BaseTest {
     }
 
     private fun clearCache() {
-        PreferenceManager.getDefaultSharedPreferences(app).edit().clear().apply()
+        PreferenceManager.getDefaultSharedPreferences(app)
+            .edit()
+            .clear()
+            .apply()
     }
 
     @After

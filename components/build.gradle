@@ -3,7 +3,11 @@ apply from: "../android-library-module.gradle"
 dependencies {
 
     implementation Dependencies.kotlin
+
+    //Android X
+    implementation Dependencies.androidx_appcompat
     implementation Dependencies.androidx_cardview
+    implementation Dependencies.androidx_constraint_layout
 
     // MPAndroidChart
     implementation Dependencies.mp_android_chart

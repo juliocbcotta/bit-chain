@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".charts.presentation.ChartActivity">
+    tools:context=".presentation.ChartActivity">
 
     <br.com.bit.chain.components.chart.ChartView
         android:id="@+id/chartView"

@@ -8,11 +8,8 @@ dependencies {
     implementation Dependencies.kotlin
 
     // Android X
-    implementation Dependencies.androidx_core
     implementation Dependencies.androidx_appcompat
-    implementation Dependencies.androidx_constraint_layout
     implementation Dependencies.androidx_lifecycle_extensions
-    implementation Dependencies.androidx_preferences
 
     // RxJava
     implementation Dependencies.rx_android

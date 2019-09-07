@@ -11,6 +11,7 @@ compileTestKotlin {
 dependencies {
     implementation Dependencies.kotlin
 
+    // Dagger
     implementation Dependencies.dagger
     kapt Dependencies.dagger_compiler
 
@@ -20,7 +21,7 @@ dependencies {
     implementation Dependencies.retrofit_gson_converter
 
     // Gson
-    api Dependencies.gson
+    implementation Dependencies.gson
 
     // OkHttp Interceptor
     implementation Dependencies.okhttp_logging_interceptor
