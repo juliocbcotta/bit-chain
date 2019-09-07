@@ -3,9 +3,9 @@ package br.com.bit.chain.charts.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.bit.chain.charts.data.models.ChartData
-import br.com.bit.chain.charts.data.models.ChartDataValue
-import br.com.bit.chain.charts.data.repository.ChartRepository
+import br.com.bit.chain.charts.domain.models.ChartData
+import br.com.bit.chain.charts.domain.models.ChartDataValue
+import br.com.bit.chain.charts.domain.ChartRepository
 import br.com.bit.chain.components.chart.ChartUiModel
 import br.com.bit.chain.components.chart.ChartValueUiModel
 import io.reactivex.Scheduler

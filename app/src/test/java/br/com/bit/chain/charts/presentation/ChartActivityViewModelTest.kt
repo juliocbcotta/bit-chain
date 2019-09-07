@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import br.com.bit.chain.charts.chartData
 import br.com.bit.chain.charts.chartUiModel
-import br.com.bit.chain.charts.data.repository.ChartRepository
+import br.com.bit.chain.charts.domain.ChartRepository
 import br.com.bit.chain.charts.utils.callOnCleared
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.times

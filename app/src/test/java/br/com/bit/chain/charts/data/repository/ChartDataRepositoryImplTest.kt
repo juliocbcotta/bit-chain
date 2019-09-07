@@ -3,7 +3,7 @@ package br.com.bit.chain.charts.data.repository
 import br.com.bit.chain.charts.chartData
 import br.com.bit.chain.charts.chartDataResponse
 import br.com.bit.chain.charts.data.repository.cache.ChartDataLocalCache
-import br.com.bit.chain.charts.data.repository.services.ChartDataRemoteService
+import br.com.bit.chain.charts.data.repository.service.ChartDataService
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.verify
@@ -21,7 +21,7 @@ import java.io.IOException
 class ChartDataRepositoryImplTest {
 
     @Mock
-    lateinit var remoteService: ChartDataRemoteService
+    lateinit var service: ChartDataService
 
     @Mock
     lateinit var localCache: ChartDataLocalCache
@@ -37,7 +37,7 @@ class ChartDataRepositoryImplTest {
         given { localCache.save(any()) }
             .willReturn(Completable.complete())
 
-        given { remoteService.fetchChart() }
+        given { service.fetchChart() }
             .willReturn(Single.just(chartDataResponse))
 
         repository.getChartData()
@@ -45,7 +45,7 @@ class ChartDataRepositoryImplTest {
             .assertValue(chartData)
             .assertComplete()
 
-        verify(remoteService).fetchChart()
+        verify(service).fetchChart()
     }
 
     @Test
@@ -58,7 +58,7 @@ class ChartDataRepositoryImplTest {
         given { localCache.save(any()) }
             .willReturn(Completable.complete())
 
-        given { remoteService.fetchChart() }
+        given { service.fetchChart() }
             .willReturn(Single.just(chartDataResponse))
 
         repository.getChartData()
@@ -66,7 +66,7 @@ class ChartDataRepositoryImplTest {
             .assertValues(localData, chartData)
             .assertComplete()
 
-        verify(remoteService).fetchChart()
+        verify(service).fetchChart()
     }
 
     @Test
@@ -79,7 +79,7 @@ class ChartDataRepositoryImplTest {
         given { localCache.save(any()) }
             .willReturn(Completable.complete())
 
-        given { remoteService.fetchChart() }
+        given { service.fetchChart() }
             .willReturn(Single.just(chartDataResponse))
 
         repository.getChartData()
@@ -87,7 +87,7 @@ class ChartDataRepositoryImplTest {
             .assertValue(localData)
             .assertComplete()
 
-        verify(remoteService).fetchChart()
+        verify(service).fetchChart()
     }
 
     @Test
@@ -97,14 +97,14 @@ class ChartDataRepositoryImplTest {
         given { localCache.get() }
             .willReturn(Maybe.empty())
 
-        given { remoteService.fetchChart() }
+        given { service.fetchChart() }
             .willReturn(Single.error(exception))
 
         repository.getChartData()
             .test()
             .assertError(exception)
 
-        verify(remoteService).fetchChart()
+        verify(service).fetchChart()
 
     }
 

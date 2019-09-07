@@ -1,4 +1,4 @@
-package br.com.bit.chain.charts.data.models
+package br.com.bit.chain.charts.domain.models
 
 data class ChartData(
     val name: String,

@@ -3,11 +3,12 @@ package br.com.bit.chain.charts.di
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.bit.chain.app.di.ViewModelKey
-import br.com.bit.chain.charts.data.repository.ChartRepository
+
 import br.com.bit.chain.charts.data.repository.ChartRepositoryImpl
 import br.com.bit.chain.charts.data.repository.cache.ChartDataLocalCache
 import br.com.bit.chain.charts.data.repository.cache.ChartDataLocalCacheImpl
-import br.com.bit.chain.charts.data.repository.services.ChartDataRemoteService
+import br.com.bit.chain.charts.data.repository.service.ChartDataService
+import br.com.bit.chain.charts.domain.ChartRepository
 import br.com.bit.chain.charts.presentation.ChartActivityViewModel
 import br.com.bit.chain.charts.presentation.State
 import br.com.bit.chain.di.ActivityScope
@@ -28,7 +29,7 @@ class ChartActivityModule {
 
     @ActivityScope
     @Provides
-    fun provideRemoteService(retrofit: Retrofit): ChartDataRemoteService = retrofit.create()
+    fun provideRemoteService(retrofit: Retrofit): ChartDataService = retrofit.create()
 
     @ActivityScope
     @Provides
