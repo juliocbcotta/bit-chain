@@ -5,9 +5,47 @@ android {
     defaultConfig {
         applicationId "br.com.bit.chain"
 
-        versionCode 1
-        versionName "1.0"
+        versionCode BuildConfig.versionCode
+        versionName BuildConfig.versionName
         testInstrumentationRunner "br.com.bit.chain.BitTestRunner"
+    }
+    signingConfigs {
+        debug {
+            storeFile rootProject.file('keys/debug.keystore')
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storePassword 'android'
+        }
+        release {
+            storeFile rootProject.file('keys/release.jks')
+            keyAlias 'bit'
+            keyPassword 'bitbite'
+            storePassword 'bitbite'
+        }
+    }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            signingConfig signingConfigs.release
+        }
+
+    }
+    productFlavors {
+        dev {
+            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
+            buildConfigField "String", "BASE_URL", "\"https://api.blockchain.info/charts/\""
+        }
+        stage {
+            applicationIdSuffix ".stage"
+            versionNameSuffix "-stage"
+            buildConfigField "String", "BASE_URL", "\"https://api.blockchain.info/charts/\""
+        }
+        prod {
+            buildConfigField "String", "BASE_URL", "\"https://api.blockchain.info/charts/\""
+        }
     }
 }
 
