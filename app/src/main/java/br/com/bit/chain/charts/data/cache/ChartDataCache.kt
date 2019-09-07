@@ -1,7 +1,7 @@
-package br.com.bit.chain.charts.data.repository.cache
+package br.com.bit.chain.charts.data.cache
 
 import android.content.SharedPreferences
-import br.com.bit.chain.charts.data.repository.models.ChartDataResponse
+import br.com.bit.chain.charts.data.models.ChartDataResponse
 import com.google.gson.Gson
 import io.reactivex.Completable
 import io.reactivex.Maybe

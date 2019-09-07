@@ -1,4 +1,4 @@
-package br.com.bit.chain.charts.data.repository.service
+package br.com.bit.chain.charts.data.service
 
 import br.com.bit.chain.charts.chartDataResponse
 import br.com.bit.chain.charts.chartDataResponseJson

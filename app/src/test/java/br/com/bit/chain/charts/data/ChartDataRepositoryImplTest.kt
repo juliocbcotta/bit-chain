@@ -1,9 +1,9 @@
-package br.com.bit.chain.charts.data.repository
+package br.com.bit.chain.charts.data
 
 import br.com.bit.chain.charts.chartData
 import br.com.bit.chain.charts.chartDataResponse
-import br.com.bit.chain.charts.data.repository.cache.ChartDataLocalCache
-import br.com.bit.chain.charts.data.repository.service.ChartDataService
+import br.com.bit.chain.charts.data.cache.ChartDataLocalCache
+import br.com.bit.chain.charts.data.service.ChartDataService
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.verify
