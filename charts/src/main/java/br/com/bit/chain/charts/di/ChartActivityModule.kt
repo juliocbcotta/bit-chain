@@ -45,7 +45,6 @@ internal class ChartActivityModule {
 
     @Provides
     @ActivityScope
-    @Named("CACHE")
     fun provideGson(): Gson {
         return Gson()
     }

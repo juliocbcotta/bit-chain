@@ -6,7 +6,6 @@ import com.google.gson.Gson
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import javax.inject.Inject
-import javax.inject.Named
 
 internal interface ChartDataLocalCache {
     fun get(): Maybe<ChartDataDao>
@@ -15,7 +14,6 @@ internal interface ChartDataLocalCache {
 
 internal class ChartDataLocalCacheImpl @Inject constructor(
     private val prefs: SharedPreferences,
-    @Named("CACHE")
     private val gson: Gson
 ) : ChartDataLocalCache {
     private val key: String = "cache key"

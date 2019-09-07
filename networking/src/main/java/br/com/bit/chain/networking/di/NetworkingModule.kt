@@ -17,7 +17,6 @@ class NetworkingModule {
 
     @Provides
     @Singleton
-    @Named("NETWORKING")
     fun provideGson(): Gson {
         return Gson()
     }
@@ -49,7 +48,6 @@ class NetworkingModule {
     @Singleton
     fun provideRetrofit(
         client: OkHttpClient,
-        @Named("NETWORKING")
         gson: Gson,
         @Named("BASE_URL")
         baseUrl: String
