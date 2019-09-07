@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply from : "../android-module.gradle"
+apply from: "../android-module.gradle"
 
 android {
     defaultConfig {
@@ -10,8 +10,8 @@ android {
 dependencies {
 
     implementation Dependencies.kotlin
-    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation Dependencies.androidx_cardview
 
-    // Charts
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    // MPAndroidChart
+    implementation Dependencies.mp_android_chart
 }
