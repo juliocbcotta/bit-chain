@@ -1,19 +1,15 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply from: "../android-module.gradle"
 
 android {
     defaultConfig {
-        applicationId "br.com.bit.chain"
-
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "br.com.bit.chain.BitTestRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
 }
 
 dependencies {
-    implementation project(':networking')
-    implementation project(':charts')
+
+    implementation project(':components')
 
     implementation Dependencies.kotlin
 
@@ -36,21 +32,18 @@ dependencies {
     implementation Dependencies.dagger_android
     kapt Dependencies.dagger_android_compiler
 
+    // Retrofit
+    implementation Dependencies.retrofit
+
+    // Gson
+    implementation Dependencies.gson
+
+
     // Unit Testing
     testImplementation Dependencies.junit
     testImplementation Dependencies.mockito_kotlin
     testImplementation Dependencies.androidx_arch_core_testing
     testImplementation Dependencies.mockito_inline
     testImplementation Dependencies.mock_webserver
-
-    // Android Instrumented Tests
-    androidTestImplementation Dependencies.androidx_test_runner
-    androidTestImplementation Dependencies.androidx_test_rules
-    androidTestImplementation Dependencies.androidx_espresso_core
-    androidTestImplementation Dependencies.androidx_ext_junit
-    androidTestImplementation Dependencies.rx_idler
-    androidTestImplementation Dependencies.androidx_ui_automator
-    androidTestImplementation Dependencies.mock_webserver
-    androidTestImplementation Dependencies.kotlin_test_junit
 
 }

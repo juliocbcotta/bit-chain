@@ -1,8 +1,3 @@
 <resources>
     <string name="app_name">Bit Chain</string>
-    <string name="charts_alert_title">Failed to load chart</string>
-    <string name="charts_alert_message">Verify your internet connection and try again.</string>
-    <string name="charts_alert_positive_button">Try again</string>
-    <string name="charts_alert_negative_button">Exit</string>
-
 </resources>

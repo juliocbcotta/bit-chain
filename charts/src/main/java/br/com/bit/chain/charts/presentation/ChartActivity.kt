@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import br.com.bit.chain.R
+import br.com.bit.chain.charts.R
 import br.com.bit.chain.components.chart.ChartView
 import dagger.android.AndroidInjection
 import javax.inject.Inject
