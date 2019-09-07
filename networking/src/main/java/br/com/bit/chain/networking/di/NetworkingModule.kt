@@ -22,26 +22,25 @@ class NetworkingModule {
         return Gson()
     }
 
-    @Provides
-    @Singleton
-    fun provideLogLevel(
-        @Named("LOGGABLE")
+    // NOTE: This method is not using dagger on purpose
+    // so we don't need to use api for logging-interceptor dependency in build.gradle file.
+    private fun provideLogLevel(
         loggable: Boolean
     ): Level {
-        return if (loggable)
-            Level.BODY
-        else
-            Level.NONE
+        return if (loggable) Level.BODY else Level.NONE
     }
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(logLevel: Level): OkHttpClient {
+    fun provideOkHttpClient(
+        @Named("LOGGABLE")
+        loggable: Boolean
+    ): OkHttpClient {
 
         return OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor()
                 .apply {
-                    level = logLevel
+                    level = provideLogLevel(loggable)
                 })
             .build()
     }
