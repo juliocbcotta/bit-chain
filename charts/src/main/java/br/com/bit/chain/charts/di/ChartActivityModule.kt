@@ -11,6 +11,7 @@ import br.com.bit.chain.charts.data.service.ChartDataService
 import br.com.bit.chain.charts.domain.ChartRepository
 import br.com.bit.chain.charts.presentation.ChartActivityViewModel
 import br.com.bit.chain.charts.presentation.State
+import com.google.gson.Gson
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -18,6 +19,7 @@ import dagger.multibindings.IntoMap
 import io.reactivex.disposables.CompositeDisposable
 import retrofit2.Retrofit
 import retrofit2.create
+import javax.inject.Named
 
 @Module(includes = [ViewModelModule::class])
 internal class ChartActivityModule {
@@ -34,6 +36,13 @@ internal class ChartActivityModule {
     @Provides
     fun provideLocalCache(impl: ChartDataLocalCacheImpl): ChartDataLocalCache = impl
 
+    @Provides
+    @ActivityScope
+    @Named("CACHE")
+    fun provideGson(): Gson {
+        return Gson()
+    }
+
     @ActivityScope
     @Provides
     fun provideStateLiveData(): MutableLiveData<State> = MutableLiveData()
@@ -41,6 +50,7 @@ internal class ChartActivityModule {
     @ActivityScope
     @Provides
     fun provideDisposables(): CompositeDisposable = CompositeDisposable()
+
 }
 
 @Module

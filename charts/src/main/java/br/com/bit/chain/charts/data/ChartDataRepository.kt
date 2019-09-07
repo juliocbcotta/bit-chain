@@ -5,6 +5,7 @@ import br.com.bit.chain.charts.data.service.ChartDataService
 import br.com.bit.chain.charts.domain.toChartData
 import br.com.bit.chain.charts.domain.ChartRepository
 import br.com.bit.chain.charts.domain.models.ChartData
+import br.com.bit.chain.charts.domain.toCharDataDao
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -22,21 +23,27 @@ internal class ChartRepositoryImpl @Inject constructor(
     override fun getChartData(): Observable<ChartData> {
         // Remote updates downstream and local cache.
         // NOTE: This call is cached in this method to avoid unnecessary remote calls.
-        val remote = service.fetchChart()
-            .flatMap { response ->
-                cache.save(response)
-                    .toSingleDefault(response)
-            }.cache()
+        val remoteToDao = service.fetchChart()
+            .map { response ->
+                response.toCharDataDao()
+            }
+            .flatMap { dao ->
+                cache.save(dao)
+                    .toSingleDefault(dao)
+            }
+            .cache()
 
         // Local cache defaults to remote if nothing is found.
         val localOrRemote = cache.get()
-            .switchIfEmpty(remote)
+            .switchIfEmpty(remoteToDao)
 
-        return localOrRemote.mergeWith(remote)
-            .distinctUntilChanged()
-            .toObservable()
+        return localOrRemote.mergeWith(remoteToDao)
             .map {
                 it.toChartData()
             }
+            .distinctUntilChanged()
+            .toObservable()
+
     }
 }
+

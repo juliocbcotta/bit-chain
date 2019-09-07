@@ -17,8 +17,8 @@ class NetworkingModule {
 
     @Provides
     @Singleton
+    @Named("NETWORKING")
     fun provideGson(): Gson {
-        // TODO: Decouple Gson for local cache and Gson for http serialization.
         return Gson()
     }
 
@@ -49,6 +49,7 @@ class NetworkingModule {
     @Singleton
     fun provideRetrofit(
         client: OkHttpClient,
+        @Named("NETWORKING")
         gson: Gson,
         @Named("BASE_URL")
         baseUrl: String
