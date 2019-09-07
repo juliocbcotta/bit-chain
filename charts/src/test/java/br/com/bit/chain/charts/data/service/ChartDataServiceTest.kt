@@ -24,10 +24,10 @@ class ChartDataServiceTest {
     @Test
     fun `should execute request properly`() {
         val server = MockWebServer()
-        server.enqueue(
-            MockResponse().setBody(chartDataResponseJson)
-        )
+        val response = MockResponse().setBody(chartDataResponseJson)
+        server.enqueue(response)
         server.start()
+
         val retrofit = createRetrofit(server.url("/").toString())
 
         val service = retrofit.create(ChartDataService::class.java)

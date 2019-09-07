@@ -1,8 +1,8 @@
 package br.com.bit.chain.charts.data.cache
 
 import android.content.SharedPreferences
-import br.com.bit.chain.charts.chartDataResponse
-import br.com.bit.chain.charts.data.models.ChartDataResponse
+import br.com.bit.chain.charts.chartDataDao
+import br.com.bit.chain.charts.data.cache.models.ChartDataDao
 import com.google.gson.Gson
 import com.nhaarman.mockitokotlin2.*
 import org.junit.Test
@@ -28,16 +28,18 @@ internal class ChartDataLocalCacheImplTest {
     lateinit var cache: ChartDataLocalCacheImpl
 
     @Test
-    fun `should save ChartDataResponse in SharedPreferences`() {
+    fun `should save ChartDataDao in SharedPreferences`() {
 
         given { prefs.edit() }
             .willReturn(editor)
+
         given { editor.putString(anyString(), anyString()) }
             .willReturn(editor)
-        given { gson.toJson(any<ChartDataResponse>()) }
+
+        given { gson.toJson(any<ChartDataDao>()) }
             .willReturn("{}")
 
-        cache.save(chartDataResponse)
+        cache.save(chartDataDao)
             .test()
             .assertComplete()
 
@@ -46,7 +48,7 @@ internal class ChartDataLocalCacheImplTest {
     }
 
     @Test
-    fun `should complete with values`() {
+    fun `should complete without emitting values`() {
         given { prefs.getString(any(), anyOrNull()) }
             .willReturn(null)
 
@@ -55,7 +57,7 @@ internal class ChartDataLocalCacheImplTest {
             .assertNoValues()
             .assertComplete()
 
-        verify(gson, never()).fromJson(anyString(), any<Class<ChartDataResponse>>())
+        verify(gson, never()).fromJson(anyString(), any<Class<ChartDataDao>>())
     }
 
     @Test
@@ -65,14 +67,14 @@ internal class ChartDataLocalCacheImplTest {
         given { prefs.getString(any(), anyOrNull()) }
             .willReturn(json)
 
-        given { gson.fromJson(json, ChartDataResponse::class.java) }
-            .willReturn(chartDataResponse)
+        given { gson.fromJson(json, ChartDataDao::class.java) }
+            .willReturn(chartDataDao)
 
         cache.get()
             .test()
-            .assertValue(chartDataResponse)
+            .assertValue(chartDataDao)
             .assertComplete()
 
-        verify(gson).fromJson(json, ChartDataResponse::class.java)
+        verify(gson).fromJson(json, ChartDataDao::class.java)
     }
 }

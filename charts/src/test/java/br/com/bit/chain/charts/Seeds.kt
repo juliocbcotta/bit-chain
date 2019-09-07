@@ -1,5 +1,7 @@
 package br.com.bit.chain.charts
 
+import br.com.bit.chain.charts.data.cache.models.ChartDataDao
+import br.com.bit.chain.charts.data.cache.models.ChartDataValueDao
 import br.com.bit.chain.charts.domain.models.ChartData
 import br.com.bit.chain.charts.domain.models.ChartDataValue
 import br.com.bit.chain.charts.data.models.ChartDataResponse
@@ -27,6 +29,18 @@ internal val chartDataResponse = ChartDataResponse(
     description = "description",
     values = listOf(
         ChartDataValueResponse(
+            x = 1.0f,
+            y = 2.0f
+        )
+    )
+)
+
+internal val chartDataDao = ChartDataDao(
+    name = "name",
+    unit = "unit",
+    description = "description",
+    values = listOf(
+        ChartDataValueDao(
             x = 1.0f,
             y = 2.0f
         )

@@ -1,6 +1,7 @@
 package br.com.bit.chain.charts.data
 
 import br.com.bit.chain.charts.chartData
+import br.com.bit.chain.charts.chartDataDao
 import br.com.bit.chain.charts.chartDataResponse
 import br.com.bit.chain.charts.data.cache.ChartDataLocalCache
 import br.com.bit.chain.charts.data.service.ChartDataService
@@ -29,11 +30,11 @@ internal class ChartDataRepositoryImplTest {
     @InjectMocks
     lateinit var repository: ChartRepositoryImpl
 
-
     @Test
-    fun `should only fetch ChartDataResponse when local cache is empty`() {
+    fun `should emit the remote data when local cache is empty`() {
         given { localCache.get() }
             .willReturn(Maybe.empty())
+
         given { localCache.save(any()) }
             .willReturn(Completable.complete())
 
@@ -49,12 +50,13 @@ internal class ChartDataRepositoryImplTest {
     }
 
     @Test
-    fun `should fetch local and remote ChartDataResponse when local cache is not empty and the data is different`() {
-        val localResponse = chartDataResponse.copy(name = "some other name")
+    fun `should emit local and remote data when they are different`() {
+        val localDao = chartDataDao.copy(name = "some other name")
         val localData = chartData.copy(name = "some other name")
 
         given { localCache.get() }
-            .willReturn(Maybe.just(localResponse))
+            .willReturn(Maybe.just(localDao))
+
         given { localCache.save(any()) }
             .willReturn(Completable.complete())
 
@@ -70,12 +72,13 @@ internal class ChartDataRepositoryImplTest {
     }
 
     @Test
-    fun `should fetch local ChartDataResponse when local cache is not empty and equals to remote`() {
-        val localResponse = chartDataResponse
+    fun `should emit only once when local and remote data are equals`() {
+        val localDao = chartDataDao
         val localData = chartData
 
         given { localCache.get() }
-            .willReturn(Maybe.just(localResponse))
+            .willReturn(Maybe.just(localDao))
+
         given { localCache.save(any()) }
             .willReturn(Completable.complete())
 
