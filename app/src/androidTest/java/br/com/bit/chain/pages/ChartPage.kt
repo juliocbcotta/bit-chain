@@ -5,6 +5,8 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.uiautomator.UiDevice
 import br.com.bit.chain.R
 import org.hamcrest.CoreMatchers.allOf
 
@@ -32,5 +34,14 @@ class ChartPage {
     fun tryAgain() {
         onView(withText(R.string.charts_alert_positive_button))
             .perform(click())
+    }
+
+    fun closeAlert() {
+        onView(withText(R.string.charts_alert_negative_button))
+            .perform(click())
+    }
+
+    fun pressBack() {
+        UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).pressBack()
     }
 }

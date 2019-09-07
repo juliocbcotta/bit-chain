@@ -34,7 +34,7 @@ abstract class BaseTest {
     }
 
     @After
-    fun tearDown() {
+    open fun tearDown() {
         server.shutdown()
     }
 }

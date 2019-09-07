@@ -47,16 +47,25 @@ class ChartActivity : AppCompatActivity() {
     }
 
     private fun showRetryAlert() {
+        var usedActionToDismissAlert = false
+
         AlertDialog.Builder(this)
             .setTitle(R.string.charts_alert_title)
             .setMessage(R.string.charts_alert_message)
             .setPositiveButton(R.string.charts_alert_positive_button) { _, _ ->
+                usedActionToDismissAlert = true
                 viewModel.onAction(
                     Action.TryAgain
                 )
             }
             .setNegativeButton(R.string.charts_alert_negative_button) { _, _ ->
+                usedActionToDismissAlert = true
                 viewModel.onAction(Action.Exit)
+            }
+            .setOnDismissListener {
+                if (!usedActionToDismissAlert) {
+                    viewModel.onAction(Action.Exit)
+                }
             }
             .create()
             .show()

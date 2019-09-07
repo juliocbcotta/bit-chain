@@ -53,8 +53,8 @@ class ChartActivityViewModel @Inject constructor(
     }
 
     override fun onCleared() {
-        super.onCleared()
         disposables.clear()
+        super.onCleared()
     }
 
     private fun loadChart() {

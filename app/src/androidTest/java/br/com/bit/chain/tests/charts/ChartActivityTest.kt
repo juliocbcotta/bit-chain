@@ -6,6 +6,7 @@ import androidx.test.rule.ActivityTestRule
 import br.com.bit.chain.BaseTest
 import br.com.bit.chain.charts.presentation.ChartActivity
 import br.com.bit.chain.pages.ChartPage
+import org.junit.After
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -14,10 +15,17 @@ import kotlin.test.assertEquals
 
 @RunWith(AndroidJUnit4::class)
 class ChartActivityTest : BaseTest() {
+
     @get:Rule
     var activityRule: ActivityTestRule<ChartActivity> =
         ActivityTestRule(ChartActivity::class.java, false, false)
 
+
+    @After
+    override fun tearDown(){
+        super.tearDown()
+        activityRule.finishActivity()
+    }
 
     private fun launch(receiver: ChartPage.() -> Unit) {
         activityRule.launchActivity(Intent())
@@ -42,7 +50,6 @@ class ChartActivityTest : BaseTest() {
             hasTitle("name")
             hasSubtitle("description")
         }
-
     }
 
     @Test
@@ -52,6 +59,24 @@ class ChartActivityTest : BaseTest() {
         launch {
             hasAlertTitle()
             hasAlertMessage()
+        }
+    }
+
+    @Test
+    fun should_show_try_again_alert_and_dismiss_on_negative_option() {
+        server.enqueue401()
+
+        launch {
+            closeAlert()
+        }
+    }
+
+    @Test
+    fun should_show_try_again_alert_and_dismiss_on_back_pressed() {
+        server.enqueue401()
+
+        launch {
+            pressBack()
         }
     }
 
