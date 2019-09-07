@@ -5,7 +5,7 @@ import br.com.bit.chain.charts.data.models.ChartDataValueResponse
 import br.com.bit.chain.charts.domain.models.ChartData
 import br.com.bit.chain.charts.domain.models.ChartDataValue
 
-fun ChartDataResponse.toChartData() =
+internal fun ChartDataResponse.toChartData() =
     ChartData(
         name = name,
         description = description,
@@ -15,7 +15,7 @@ fun ChartDataResponse.toChartData() =
         }
     )
 
-fun ChartDataValueResponse.toChartDataValue() =
+internal fun ChartDataValueResponse.toChartDataValue() =
     ChartDataValue(
         x = x,
         y = y

@@ -13,7 +13,7 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class ChartDataLocalCacheImplTest {
+internal class ChartDataLocalCacheImplTest {
 
     @Mock
     lateinit var prefs: SharedPreferences

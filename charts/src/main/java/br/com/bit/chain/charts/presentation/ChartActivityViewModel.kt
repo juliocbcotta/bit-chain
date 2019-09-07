@@ -10,20 +10,20 @@ import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 import javax.inject.Named
 
-sealed class State {
+internal sealed class State {
     object Loading : State()
     data class Success(val uiModel: ChartUiModel) : State()
     object Error : State()
     object End : State()
 }
 
-sealed class Action {
+internal sealed class Action {
     object Load : Action()
     object TryAgain : Action()
     object Exit : Action()
 }
 
-class ChartActivityViewModel @Inject constructor(
+internal class ChartActivityViewModel @Inject constructor(
     private val realState: MutableLiveData<State>,
     private val disposables: CompositeDisposable,
     @Named("MainScheduler")

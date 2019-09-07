@@ -7,7 +7,7 @@ import br.com.bit.chain.charts.data.models.ChartDataValueResponse
 import br.com.bit.chain.components.chart.ChartUiModel
 import br.com.bit.chain.components.chart.ChartValueUiModel
 
-val chartDataResponseJson = """
+internal val chartDataResponseJson = """
                     {
                         "name": "name",
                         "description" : "description",
@@ -21,7 +21,7 @@ val chartDataResponseJson = """
                     }
             """.trimMargin()
 
-val chartDataResponse = ChartDataResponse(
+internal val chartDataResponse = ChartDataResponse(
     name = "name",
     unit = "unit",
     description = "description",
@@ -33,7 +33,7 @@ val chartDataResponse = ChartDataResponse(
     )
 )
 
-val chartData = ChartData(
+internal val chartData = ChartData(
     name = "name",
     unit = "unit",
     description = "description",
@@ -45,7 +45,7 @@ val chartData = ChartData(
     )
 )
 
-val chartUiModel = ChartUiModel(
+internal val chartUiModel = ChartUiModel(
     title = "name",
     subtitle = "description",
     values = listOf(

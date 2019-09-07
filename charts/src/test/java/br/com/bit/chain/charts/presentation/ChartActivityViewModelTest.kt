@@ -21,7 +21,7 @@ import org.mockito.junit.MockitoJUnitRunner
 import java.io.IOException
 
 @RunWith(MockitoJUnitRunner::class)
-class ChartActivityViewModelTest {
+internal class ChartActivityViewModelTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()

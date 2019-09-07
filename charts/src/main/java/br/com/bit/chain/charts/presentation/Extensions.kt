@@ -6,7 +6,7 @@ import br.com.bit.chain.components.chart.ChartUiModel
 import br.com.bit.chain.components.chart.ChartValueUiModel
 
 
-fun ChartData.toChartUiModel(): ChartUiModel {
+internal fun ChartData.toChartUiModel(): ChartUiModel {
     return ChartUiModel(
         title = name,
         subtitle = description,
@@ -16,7 +16,7 @@ fun ChartData.toChartUiModel(): ChartUiModel {
     )
 }
 
-fun ChartDataValue.toChartValueUiModel(): ChartValueUiModel {
+internal fun ChartDataValue.toChartValueUiModel(): ChartValueUiModel {
     return ChartValueUiModel(
         x = x,
         y = y

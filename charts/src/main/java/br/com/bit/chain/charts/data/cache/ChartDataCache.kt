@@ -7,13 +7,13 @@ import io.reactivex.Completable
 import io.reactivex.Maybe
 import javax.inject.Inject
 
-interface ChartDataLocalCache {
+internal interface ChartDataLocalCache {
     fun get(): Maybe<ChartDataResponse>
     fun save(chartDataResponse: ChartDataResponse): Completable
 }
 
 // TODO: Decouple models and Gson from network and cache.
-class ChartDataLocalCacheImpl @Inject constructor(
+internal class ChartDataLocalCacheImpl @Inject constructor(
     private val prefs: SharedPreferences,
     private val gson: Gson
 ) : ChartDataLocalCache {

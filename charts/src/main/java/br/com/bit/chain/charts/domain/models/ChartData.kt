@@ -1,6 +1,6 @@
 package br.com.bit.chain.charts.domain.models
 
-data class ChartData(
+internal data class ChartData(
     val name: String,
     val unit: String,
     val description: String,

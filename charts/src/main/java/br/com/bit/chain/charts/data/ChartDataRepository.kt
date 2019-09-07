@@ -8,7 +8,7 @@ import br.com.bit.chain.charts.domain.models.ChartData
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class ChartRepositoryImpl @Inject constructor(
+internal class ChartRepositoryImpl @Inject constructor(
     private val cache: ChartDataLocalCache,
     private val service: ChartDataService
 ) :

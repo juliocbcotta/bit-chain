@@ -1,6 +1,6 @@
 package br.com.bit.chain.charts.data.models
 
-data class ChartDataResponse(
+internal data class ChartDataResponse(
     val name: String,
     val unit: String,
     val description: String,

@@ -18,7 +18,7 @@ import org.mockito.junit.MockitoJUnitRunner
 import java.io.IOException
 
 @RunWith(MockitoJUnitRunner::class)
-class ChartDataRepositoryImplTest {
+internal class ChartDataRepositoryImplTest {
 
     @Mock
     lateinit var service: ChartDataService
