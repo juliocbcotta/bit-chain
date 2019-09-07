@@ -15,14 +15,14 @@ dependencies {
     kapt Dependencies.dagger_compiler
 
     // Retrofit
-    api 'com.squareup.retrofit2:retrofit:2.6.1'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.1'
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+    api Dependencies.retrofit
+    implementation Dependencies.retrofit_rx_adapter
+    implementation Dependencies.retrofit_gson_converter
 
     // Gson
-    api 'com.google.code.gson:gson:2.8.5'
+    api Dependencies.gson
 
-    // OkHttp
-    implementation "com.squareup.okhttp3:logging-interceptor:4.1.1"
+    // OkHttp Interceptor
+    implementation Dependencies.okhttp_logging_interceptor
 
 }

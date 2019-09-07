@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply from : "../android-module.gradle"
+apply from: "../android-module.gradle"
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -37,21 +37,21 @@ dependencies {
     implementation Dependencies.dagger_android
     kapt Dependencies.dagger_android_compiler
 
-
     // Unit Testing
-    testImplementation 'junit:junit:4.12'
-    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
-    testImplementation "androidx.arch.core:core-testing:2.1.0"
-    testImplementation 'org.mockito:mockito-inline:2.28.2'
-    testImplementation "com.squareup.okhttp3:mockwebserver:4.1.1"
+    testImplementation Dependencies.junit
+    testImplementation Dependencies.mockito_kotlin
+    testImplementation Dependencies.androidx_arch_core_testing
+    testImplementation Dependencies.mockito_inline
+    testImplementation Dependencies.mock_webserver
 
+    // Android Instrumented Tests
+    androidTestImplementation Dependencies.androidx_test_runner
+    androidTestImplementation Dependencies.androidx_test_rules
+    androidTestImplementation Dependencies.androidx_espresso_core
+    androidTestImplementation Dependencies.androidx_ext_junit
+    androidTestImplementation Dependencies.rx_idler
+    androidTestImplementation Dependencies.androidx_ui_automator
+    androidTestImplementation Dependencies.mock_webserver
+    androidTestImplementation Dependencies.kotlin_test_junit
 
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test:rules:1.2.0'
-    androidTestImplementation 'com.squareup.rx.idler:rx2-idler:0.9.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation "com.squareup.okhttp3:mockwebserver:4.1.1"
-    androidTestImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
-    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
 }
