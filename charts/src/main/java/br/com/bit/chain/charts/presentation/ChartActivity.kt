@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import br.com.bit.chain.charts.R
+import br.com.bit.chain.charts.app.ChartsApp
 import br.com.bit.chain.components.chart.ChartView
 import dagger.android.AndroidInjection
 import javax.inject.Inject
@@ -20,7 +21,7 @@ class ChartActivity : AppCompatActivity() {
     lateinit var factory: ViewModelProvider.Factory
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
+        ChartsApp.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chart)
 

@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply from: "../android-module.gradle"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     defaultConfig {
@@ -9,13 +11,17 @@ android {
         versionName "1.0"
         testInstrumentationRunner "br.com.bit.chain.BitTestRunner"
     }
+
+
+    dynamicFeatures = [":charts"]
+
+
 }
 
 dependencies {
     implementation project(':theme')
     implementation project(':android-di')
     implementation project(':networking')
-    implementation project(':charts')
 
     implementation Dependencies.kotlin
 
@@ -30,6 +36,7 @@ dependencies {
 
     // Dagger
     implementation Dependencies.dagger
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt Dependencies.dagger_compiler
 
     // Dagger Android

@@ -1,9 +1,12 @@
 package br.com.bit.chain.charts.di
 
+import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.preference.PreferenceManager
 import br.com.bit.chain.android.di.ActivityScope
 import br.com.bit.chain.android.di.ViewModelKey
+import br.com.bit.chain.app.BitApplication
 import br.com.bit.chain.charts.data.ChartRepositoryImpl
 import br.com.bit.chain.charts.data.cache.ChartDataLocalCache
 import br.com.bit.chain.charts.data.cache.ChartDataLocalCacheImpl
@@ -23,6 +26,10 @@ import javax.inject.Named
 
 @Module(includes = [ViewModelModule::class])
 internal class ChartActivityModule {
+    @ActivityScope
+    @Provides
+    fun provideSharedPreferences(app: BitApplication): SharedPreferences =
+        PreferenceManager.getDefaultSharedPreferences(app)
 
     @ActivityScope
     @Provides

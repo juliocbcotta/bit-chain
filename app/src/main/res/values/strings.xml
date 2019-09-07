@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Bit Chain</string>
+    <string name="charts_module">Charts</string>
 </resources>
