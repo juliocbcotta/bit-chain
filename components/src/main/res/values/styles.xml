@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Card" />
+
+    <style name="Card.Title" parent="TextAppearance.AppCompat.Title" />
+
+    <style name="Card.SubTitle" parent="TextAppearance.AppCompat.Subhead" />
+</resources>

@@ -19,7 +19,7 @@
 
         <TextView
             android:id="@+id/titleView"
-            style="@style/TextAppearance.AppCompat.Title"
+            style="@style/Card.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -30,7 +30,7 @@
 
         <TextView
             android:id="@+id/subtitleView"
-            style="@style/TextAppearance.AppCompat.Subhead"
+            style="@style/Card.SubTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

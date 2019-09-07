@@ -1,4 +1,5 @@
 include ':app',
+        ':theme',
         ':android-di',
         ':charts',
         ':networking',
