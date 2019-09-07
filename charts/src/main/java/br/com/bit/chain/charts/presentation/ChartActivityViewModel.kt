@@ -3,11 +3,8 @@ package br.com.bit.chain.charts.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.bit.chain.charts.domain.models.ChartData
-import br.com.bit.chain.charts.domain.models.ChartDataValue
 import br.com.bit.chain.charts.domain.ChartRepository
 import br.com.bit.chain.components.chart.ChartUiModel
-import br.com.bit.chain.components.chart.ChartValueUiModel
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -62,32 +59,17 @@ class ChartActivityViewModel @Inject constructor(
         disposables.add(repository.getChartData()
             .map {
                 it.toChartUiModel()
-            }
+                }
             .subscribeOn(ioScheduler)
-            .observeOn(mainScheduler)
-            .subscribe({ uiModel ->
-                realState.value = State.Success(uiModel)
-            }, {
-                realState.value = State.Error
-            })
+                .observeOn(mainScheduler)
+                .subscribe({ uiModel ->
+                    realState.value = State.Success(uiModel)
+                }, {
+                    realState.value = State.Error
+                })
         )
-    }
 
-    private fun ChartData.toChartUiModel(): ChartUiModel {
-        return ChartUiModel(
-            title = name,
-            subtitle = description,
-            values = values.map {
-                it.toChartValueUiModel()
-            }
-        )
-    }
 
-    private fun ChartDataValue.toChartValueUiModel(): ChartValueUiModel {
-        return ChartValueUiModel(
-            x = x,
-            y = y
-        )
     }
 
     private fun exit() {

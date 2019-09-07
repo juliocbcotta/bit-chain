@@ -1,12 +1,10 @@
 package br.com.bit.chain.charts.data
 
-import br.com.bit.chain.charts.domain.models.ChartData
-import br.com.bit.chain.charts.domain.models.ChartDataValue
 import br.com.bit.chain.charts.data.cache.ChartDataLocalCache
 import br.com.bit.chain.charts.data.service.ChartDataService
-import br.com.bit.chain.charts.data.models.ChartDataResponse
-import br.com.bit.chain.charts.data.models.ChartDataValueResponse
+import br.com.bit.chain.charts.domain.toChartData
 import br.com.bit.chain.charts.domain.ChartRepository
+import br.com.bit.chain.charts.domain.models.ChartData
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -41,20 +39,4 @@ class ChartRepositoryImpl @Inject constructor(
                 it.toChartData()
             }
     }
-
-    private fun ChartDataResponse.toChartData() =
-        ChartData(
-            name = name,
-            description = description,
-            unit = unit,
-            values = values.map {
-                it.toChartDataValue()
-            }
-        )
-
-    private fun ChartDataValueResponse.toChartDataValue() =
-        ChartDataValue(
-            x = x,
-            y = y
-        )
 }
