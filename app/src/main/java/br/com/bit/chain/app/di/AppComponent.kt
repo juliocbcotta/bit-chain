@@ -1,5 +1,6 @@
 package br.com.bit.chain.app.di
 
+import br.com.bit.chain.android.di.DaggerViewModelInjectionModule
 import br.com.bit.chain.app.BitApplication
 import br.com.bit.chain.charts.di.ActivityBindingModule
 import br.com.bit.chain.networking.di.NetworkingModule
@@ -24,8 +25,10 @@ interface AppComponent {
 
     @Component.Factory
     interface Factory {
-        fun create(@BindsInstance app: BitApplication,
-                   @Named("BASE_URL") @BindsInstance baseUrl: String): AppComponent
+        fun create(
+            @BindsInstance app: BitApplication,
+            @Named("BASE_URL") @BindsInstance baseUrl: String
+        ): AppComponent
     }
 
 }

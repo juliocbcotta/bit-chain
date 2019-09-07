@@ -1,13 +1,9 @@
-package br.com.bit.chain.app.di
+package br.com.bit.chain.android.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import dagger.Binds
-import dagger.MapKey
-import dagger.Module
 import javax.inject.Inject
 import javax.inject.Provider
-import kotlin.reflect.KClass
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory
@@ -28,11 +24,4 @@ class ViewModelFactory
         }
 
     }
-}
-
-
-@Module
-abstract class DaggerViewModelInjectionModule {
-    @Binds
-    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }

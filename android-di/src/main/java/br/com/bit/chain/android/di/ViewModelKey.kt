@@ -1,4 +1,4 @@
-package br.com.bit.chain.di
+package br.com.bit.chain.android.di
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey
@@ -11,4 +11,4 @@ import kotlin.reflect.KClass
 )
 @Retention(AnnotationRetention.RUNTIME)
 @MapKey
-internal annotation class ViewModelKey(val value: KClass<out ViewModel>)
+annotation class ViewModelKey(val value: KClass<out ViewModel>)

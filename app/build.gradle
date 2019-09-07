@@ -12,6 +12,7 @@ android {
 }
 
 dependencies {
+    implementation project(':android-di')
     implementation project(':networking')
     implementation project(':charts')
 

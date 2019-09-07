@@ -1,4 +1,4 @@
-package br.com.bit.chain.di
+package br.com.bit.chain.android.di
 
 import javax.inject.Scope
 

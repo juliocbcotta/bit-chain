@@ -8,7 +8,7 @@ android {
 }
 
 dependencies {
-
+    implementation project(':android-di')
     implementation project(':components')
     testImplementation project(':networking')
 

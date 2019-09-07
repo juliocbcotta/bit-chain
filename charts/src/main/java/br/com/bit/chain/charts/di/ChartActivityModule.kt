@@ -10,8 +10,8 @@ import br.com.bit.chain.charts.data.service.ChartDataService
 import br.com.bit.chain.charts.domain.ChartRepository
 import br.com.bit.chain.charts.presentation.ChartActivityViewModel
 import br.com.bit.chain.charts.presentation.State
-import br.com.bit.chain.di.ActivityScope
-import br.com.bit.chain.di.ViewModelKey
+import br.com.bit.chain.android.di.ActivityScope
+import br.com.bit.chain.android.di.ViewModelKey
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

@@ -1,0 +1,16 @@
+apply plugin: 'com.android.library'
+apply from: "../android-module.gradle"
+
+android {
+    defaultConfig {
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+}
+
+dependencies {
+
+    implementation Dependencies.kotlin
+
+    implementation Dependencies.dagger
+    implementation Dependencies.androidx_lifecycle_extensions
+}
