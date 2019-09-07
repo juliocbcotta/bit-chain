@@ -3,7 +3,6 @@ package br.com.bit.chain.charts.data.service
 import br.com.bit.chain.charts.chartDataResponse
 import br.com.bit.chain.charts.chartDataResponseJson
 import br.com.bit.chain.networking.di.NetworkingModule
-import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Test
 import retrofit2.Retrofit
@@ -16,7 +15,7 @@ class ChartDataServiceTest {
 
     private fun createRetrofit(url: String): Retrofit {
         return module.provideRetrofit(
-            module.provideOkHttpClient(BODY),
+            module.provideOkHttpClient(true),
             module.provideGson(),
             url
         )
