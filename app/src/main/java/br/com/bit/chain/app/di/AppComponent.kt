@@ -16,28 +16,26 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
-        AndroidInjectionModule::class,
-        DaggerViewModelInjectionModule::class,
+        BaseModule::class,
         AppModule::class,
         NetworkingModule::class
     ]
 )
 interface AppComponent {
+
     fun inject(app: BitApplication)
 
     @Component.Factory
     interface Factory {
+
         fun create(
-            @BindsInstance app: BitApplication,
-            @Named("BASE_URL") @BindsInstance baseUrl: String
+            @BindsInstance
+            app: BitApplication,
+            @Named("BASE_URL")
+            @BindsInstance
+            baseUrl: String
         ): AppComponent
     }
-
-    @Named("MainScheduler")
-    fun provideMainScheduler(): Scheduler
-
-    @Named("IOScheduler")
-    fun provideIOScheduler(): Scheduler
 
     fun provideBitApp(): BitApplication
 

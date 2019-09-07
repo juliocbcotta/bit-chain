@@ -10,6 +10,8 @@ import javax.inject.Inject
 
 class BitApplication : Application(), HasAndroidInjector {
 
+    lateinit var appComponent: AppComponent
+
     @Inject
     lateinit var androidInjection: DispatchingAndroidInjector<Any>
 
@@ -19,6 +21,12 @@ class BitApplication : Application(), HasAndroidInjector {
 
     override fun onCreate() {
         super.onCreate()
+        app = this
+
+        inject()
+    }
+
+    private fun inject() {
         appComponent = DaggerAppComponent.factory()
             .create(this, "https://api.blockchain.info/charts/")
 
@@ -26,6 +34,7 @@ class BitApplication : Application(), HasAndroidInjector {
     }
 
     companion object {
-        lateinit var appComponent: AppComponent
+        lateinit var app: BitApplication
+
     }
 }
