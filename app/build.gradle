@@ -16,7 +16,7 @@ dependencies {
     implementation project(':networking')
     implementation project(':components')
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation Dependencies.kotlin
 
     // Android X
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -31,10 +31,10 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
 
     // Dagger
-    implementation 'com.google.dagger:dagger:2.24'
-    implementation 'com.google.dagger:dagger-android:2.24'
-    kapt 'com.google.dagger:dagger-compiler:2.24'
-    kapt 'com.google.dagger:dagger-android-processor:2.24'
+    implementation Dependencies.dagger
+    implementation Dependencies.dagger_android
+    kapt Dependencies.dagger_compiler
+    kapt Dependencies.dagger_android_compiler
 
 
     // Unit Testing

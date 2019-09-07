@@ -1,2 +1,4 @@
-include ':app', ':networking', ':components'
+include ':app',
+        ':networking',
+        ':components'
 rootProject.name='bit-chain'
