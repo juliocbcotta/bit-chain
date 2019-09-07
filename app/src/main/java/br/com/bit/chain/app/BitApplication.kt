@@ -2,6 +2,8 @@ package br.com.bit.chain.app
 
 import android.app.Application
 import br.com.bit.chain.app.di.AppComponent
+import br.com.bit.chain.BuildConfig
+import br.com.bit.chain.R
 import br.com.bit.chain.app.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -28,13 +30,12 @@ class BitApplication : Application(), HasAndroidInjector {
 
     private fun inject() {
         appComponent = DaggerAppComponent.factory()
-            .create(this, "https://api.blockchain.info/charts/")
+            .create(this, BuildConfig.BASE_URL)
 
         appComponent.inject(this)
     }
 
     companion object {
         lateinit var app: BitApplication
-
     }
 }
