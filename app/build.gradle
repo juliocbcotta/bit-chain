@@ -9,12 +9,10 @@ android {
 
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "br.com.bit.chain.BitTestRunner"
     }
 
 
     dynamicFeatures = [":charts"]
-
 
 }
 
@@ -36,7 +34,6 @@ dependencies {
 
     // Dagger
     implementation Dependencies.dagger
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt Dependencies.dagger_compiler
 
     // Dagger Android
@@ -46,14 +43,6 @@ dependencies {
     // Gson
     implementation Dependencies.gson
 
-    // Android Instrumented Tests
-    androidTestImplementation Dependencies.androidx_test_runner
-    androidTestImplementation Dependencies.androidx_test_rules
-    androidTestImplementation Dependencies.androidx_espresso_core
-    androidTestImplementation Dependencies.androidx_ext_junit
-    androidTestImplementation Dependencies.rx_idler
-    androidTestImplementation Dependencies.androidx_ui_automator
-    androidTestImplementation Dependencies.mock_webserver
-    androidTestImplementation Dependencies.kotlin_test_junit
+
 
 }

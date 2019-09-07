@@ -1,16 +1,12 @@
 package br.com.bit.chain.app.di
 
-import br.com.bit.chain.android.di.DaggerViewModelInjectionModule
 import br.com.bit.chain.app.BitApplication
 import br.com.bit.chain.networking.di.NetworkingModule
 import dagger.BindsInstance
 import dagger.Component
-import dagger.android.AndroidInjectionModule
-import dagger.android.AndroidInjector
-import io.reactivex.Scheduler
 import retrofit2.Retrofit
 import javax.inject.Named
-import javax.inject.Provider
+
 import javax.inject.Singleton
 
 @Singleton

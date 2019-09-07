@@ -4,9 +4,9 @@
     package="br.com.bit.chain.charts">
 
     <application tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".presentation.ChartActivity">
-        </activity>
+        <activity android:name=".presentation.ChartActivity" />
     </application>
+
     <dist:module
         dist:instant="false"
         dist:title="@string/charts_module">

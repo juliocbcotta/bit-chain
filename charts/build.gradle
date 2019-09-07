@@ -10,6 +10,7 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 29
+        testInstrumentationRunner "br.com.bit.chain.BitTestRunner"
         consumerProguardFiles 'consumer-rules.pro'
     }
 
@@ -59,5 +60,16 @@ dependencies {
     testImplementation Dependencies.androidx_arch_core_testing
     testImplementation Dependencies.mockito_inline
     testImplementation Dependencies.mock_webserver
+
+
+    // Android Instrumented Tests
+    androidTestImplementation Dependencies.androidx_test_runner
+    androidTestImplementation Dependencies.androidx_test_rules
+    androidTestImplementation Dependencies.androidx_espresso_core
+    androidTestImplementation Dependencies.androidx_ext_junit
+    androidTestImplementation Dependencies.rx_idler
+    androidTestImplementation Dependencies.androidx_ui_automator
+    androidTestImplementation Dependencies.mock_webserver
+    androidTestImplementation Dependencies.kotlin_test_junit
 
 }

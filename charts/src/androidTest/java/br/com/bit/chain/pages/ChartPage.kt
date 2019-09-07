@@ -7,7 +7,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
-import br.com.bit.chain.R
+import br.com.bit.chain.charts.R
 import org.hamcrest.CoreMatchers.allOf
 
 class ChartPage {

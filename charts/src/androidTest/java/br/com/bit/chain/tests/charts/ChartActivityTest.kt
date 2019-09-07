@@ -16,13 +16,38 @@ import kotlin.test.assertEquals
 @RunWith(AndroidJUnit4::class)
 class ChartActivityTest : BaseTest() {
 
+    private val chartDataResponseJson = """
+                    {
+                        "name": "name",
+                        "description" : "description",
+                        "unit" : "unit",
+                        "values" :[
+                                {
+                                 "x" : 1.0,
+                                 "y" : 2.0
+                                },
+                                 {
+                                 "x" : 2.0,
+                                 "y" : 4.0
+                                },
+                                 {
+                                 "x" : 3.0,
+                                 "y" : 6.0
+                                },
+                                 {
+                                 "x" : 4.0,
+                                 "y" : 8.0
+                                }
+                            ]
+                    }
+            """.trimMargin()
     @get:Rule
     var activityRule: ActivityTestRule<ChartActivity> =
         ActivityTestRule(ChartActivity::class.java, false, false)
 
 
     @After
-    override fun tearDown(){
+    override fun tearDown() {
         super.tearDown()
         activityRule.finishActivity()
     }

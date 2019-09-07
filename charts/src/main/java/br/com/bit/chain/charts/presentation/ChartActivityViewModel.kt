@@ -59,14 +59,15 @@ internal class ChartActivityViewModel @Inject constructor(
         disposables.add(repository.getChartData()
             .map {
                 it.toChartUiModel()
-                }
+            }
             .subscribeOn(ioScheduler)
-                .observeOn(mainScheduler)
-                .subscribe({ uiModel ->
-                    realState.value = State.Success(uiModel)
-                }, {
-                    realState.value = State.Error
-                })
+            .observeOn(mainScheduler)
+            .subscribe({ uiModel ->
+                realState.value = State.Success(uiModel)
+            }, {
+                it.printStackTrace()
+                realState.value = State.Error
+            })
         )
 
 

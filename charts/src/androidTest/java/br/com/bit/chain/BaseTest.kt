@@ -14,9 +14,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 abstract class BaseTest {
-    private val app = InstrumentationRegistry.getInstrumentation()
-        .targetContext
-        .applicationContext as BitApplication
+    private val app =  BitApplication.app
 
     protected val server = MockWebServer()
 
@@ -24,9 +22,10 @@ abstract class BaseTest {
     fun setup() {
         server.start()
         val url = server.url("/").toString()
-        DaggerAppComponent.factory()
+        app.appComponent = DaggerAppComponent.factory()
             .create(app, url)
-            .inject(app)
+
+        app.appComponent.inject(app)
 
         clearCache()
     }

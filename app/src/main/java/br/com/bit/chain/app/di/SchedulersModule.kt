@@ -6,15 +6,18 @@ import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Named
+import javax.inject.Singleton
 
 @Module
 class SchedulersModule {
 
-    @Named("MainScheduler")
+    @Singleton
     @Provides
+    @Named("MainScheduler")
     fun provideMainScheduler(): Scheduler = AndroidSchedulers.mainThread()
 
-    @Named("IOScheduler")
+    @Singleton
     @Provides
+    @Named("IOScheduler")
     fun provideIOScheduler(): Scheduler = Schedulers.io()
 }
