@@ -55,6 +55,8 @@ dependencies {
     implementation project(':networking')
     implementation project(':charts')
 
+    debugImplementation Dependencies.leak_canary
+
     implementation Dependencies.kotlin
 
     // Android X
