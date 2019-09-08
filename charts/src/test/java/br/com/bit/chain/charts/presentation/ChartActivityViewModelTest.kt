@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import br.com.bit.chain.charts.chartData
 import br.com.bit.chain.charts.chartUiModel
-import br.com.bit.chain.charts.domain.ChartRepository
+import br.com.bit.chain.charts.domain.FetchChartUseCase
 import br.com.bit.chain.charts.utils.callOnCleared
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.times
@@ -27,7 +27,7 @@ internal class ChartActivityViewModelTest {
     val rule = InstantTaskExecutorRule()
 
     @Mock
-    lateinit var repository: ChartRepository
+    lateinit var fetchChartUseCase: FetchChartUseCase
 
     @Mock
     lateinit var disposable: CompositeDisposable
@@ -36,11 +36,10 @@ internal class ChartActivityViewModelTest {
     lateinit var observer: Observer<State>
 
     private val mainScheduler = Schedulers.trampoline()
-    private val ioScheduler = Schedulers.trampoline()
 
     @Test
     fun `should fetch chart data with success`() {
-        given { repository.getChartData() }
+        given { fetchChartUseCase.execute() }
             .willReturn(Observable.just(chartData))
 
         val vm = createViewModel()
@@ -55,7 +54,7 @@ internal class ChartActivityViewModelTest {
     @Test
     fun `should fail to fetch chart data`() {
         val exception = IOException()
-        given { repository.getChartData() }
+        given { fetchChartUseCase.execute() }
             .willReturn(Observable.error(exception))
 
         val vm = createViewModel()
@@ -72,7 +71,7 @@ internal class ChartActivityViewModelTest {
     fun `should fail to fetch chart data and try again`() {
 
         val exception = IOException()
-        given { repository.getChartData() }
+        given { fetchChartUseCase.execute() }
             .willReturn(Observable.error(exception))
 
         val vm = createViewModel()
@@ -83,7 +82,7 @@ internal class ChartActivityViewModelTest {
         verify(observer).onChanged(State.Loading)
         verify(observer).onChanged(State.Error)
 
-        given { repository.getChartData() }
+        given { fetchChartUseCase.execute() }
             .willReturn(Observable.just(chartData))
 
         vm.onAction(Action.TryAgain)
@@ -95,7 +94,7 @@ internal class ChartActivityViewModelTest {
     @Test
     fun `should clear disposable on onClear`() {
         val exception = IOException()
-        given { repository.getChartData() }
+        given { fetchChartUseCase.execute() }
             .willReturn(Observable.error(exception))
         val vm = createViewModel()
 
@@ -122,8 +121,7 @@ internal class ChartActivityViewModelTest {
             realState = MutableLiveData(),
             disposables = disposable,
             mainScheduler = mainScheduler,
-            ioScheduler = ioScheduler,
-            repository = repository
+            fetchChartUseCase = fetchChartUseCase
         )
     }
 

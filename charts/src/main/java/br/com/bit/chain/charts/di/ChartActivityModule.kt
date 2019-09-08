@@ -9,6 +9,8 @@ import br.com.bit.chain.charts.data.cache.ChartDataLocalCache
 import br.com.bit.chain.charts.data.cache.ChartDataLocalCacheImpl
 import br.com.bit.chain.charts.data.service.ChartDataService
 import br.com.bit.chain.charts.domain.ChartRepository
+import br.com.bit.chain.charts.domain.FetchChartUseCase
+import br.com.bit.chain.charts.domain.FetchChartUseCaseImpl
 import br.com.bit.chain.charts.presentation.ChartActivityViewModel
 import br.com.bit.chain.charts.presentation.State
 import com.google.gson.Gson
@@ -50,6 +52,10 @@ internal class ChartActivityModule {
     @ActivityScope
     @Provides
     fun provideDisposables(): CompositeDisposable = CompositeDisposable()
+
+    @ActivityScope
+    @Provides
+    fun provideUseCase(impl: FetchChartUseCaseImpl): FetchChartUseCase = impl
 
 }
 
