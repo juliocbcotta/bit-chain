@@ -44,6 +44,9 @@ class ChartActivity : AppCompatActivity() {
                 State.End -> finish()
             }
         })
+        if (savedInstanceState == null) {
+            viewModel.onAction(Action.Load)
+        }
     }
 
     private fun showRetryAlert() {

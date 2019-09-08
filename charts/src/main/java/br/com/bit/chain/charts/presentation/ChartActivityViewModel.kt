@@ -37,10 +37,6 @@ internal class ChartActivityViewModel @Inject constructor(
     // NOTE: The public state is read-only.
     val state: LiveData<State> = realState
 
-    init {
-        onAction(Action.Load)
-    }
-
     fun onAction(action: Action) {
         when (action) {
             Action.Load -> loadChart()

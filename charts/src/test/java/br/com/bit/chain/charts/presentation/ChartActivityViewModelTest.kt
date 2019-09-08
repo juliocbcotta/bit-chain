@@ -2,6 +2,7 @@ package br.com.bit.chain.charts.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import br.com.bit.chain.charts.chartData
 import br.com.bit.chain.charts.chartUiModel
 import br.com.bit.chain.charts.domain.ChartRepository
@@ -9,7 +10,6 @@ import br.com.bit.chain.charts.utils.callOnCleared
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -27,13 +27,13 @@ internal class ChartActivityViewModelTest {
     val rule = InstantTaskExecutorRule()
 
     @Mock
-    lateinit var realState: MutableLiveData<State>
-
-    @Mock
     lateinit var repository: ChartRepository
 
     @Mock
     lateinit var disposable: CompositeDisposable
+
+    @Mock
+    lateinit var observer: Observer<State>
 
     private val mainScheduler = Schedulers.trampoline()
     private val ioScheduler = Schedulers.trampoline()
@@ -43,12 +43,13 @@ internal class ChartActivityViewModelTest {
         given { repository.getChartData() }
             .willReturn(Observable.just(chartData))
 
-        createViewModel()
+        val vm = createViewModel()
 
-        verify(realState).value = State.Loading
-        verify(realState).value = State.Success(chartUiModel)
+        vm.state.observeForever(observer)
+        vm.onAction(Action.Load)
 
-        verifyNoMoreInteractions(realState)
+        verify(observer).onChanged(State.Loading)
+        verify(observer).onChanged(State.Success(chartUiModel))
     }
 
     @Test
@@ -57,12 +58,14 @@ internal class ChartActivityViewModelTest {
         given { repository.getChartData() }
             .willReturn(Observable.error(exception))
 
-        createViewModel()
+        val vm = createViewModel()
 
-        verify(realState).value = State.Loading
-        verify(realState).value = State.Error
+        vm.state.observeForever(observer)
+        vm.onAction(Action.Load)
 
-        verifyNoMoreInteractions(realState)
+        verify(observer).onChanged(State.Loading)
+        verify(observer).onChanged(State.Error)
+
     }
 
     @Test
@@ -72,22 +75,21 @@ internal class ChartActivityViewModelTest {
         given { repository.getChartData() }
             .willReturn(Observable.error(exception))
 
-        val viewModel = createViewModel()
+        val vm = createViewModel()
 
+        vm.state.observeForever(observer)
+        vm.onAction(Action.Load)
 
-        verify(realState).value = State.Loading
-        verify(realState).value = State.Error
-        verify(repository).getChartData()
+        verify(observer).onChanged(State.Loading)
+        verify(observer).onChanged(State.Error)
 
         given { repository.getChartData() }
             .willReturn(Observable.just(chartData))
 
-        viewModel.onAction(Action.TryAgain)
+        vm.onAction(Action.TryAgain)
 
-        verify(realState, times(2)).value = State.Loading
-        verify(realState).value = State.Success(chartUiModel)
-
-        verifyNoMoreInteractions(realState)
+        verify(observer, times(2)).onChanged(State.Loading)
+        verify(observer).onChanged(State.Success(chartUiModel))
     }
 
     @Test
@@ -95,29 +97,29 @@ internal class ChartActivityViewModelTest {
         val exception = IOException()
         given { repository.getChartData() }
             .willReturn(Observable.error(exception))
-        val viewModel = createViewModel()
+        val vm = createViewModel()
 
-        viewModel.callOnCleared()
+        vm.onAction(Action.Load)
+
+        vm.callOnCleared()
 
         verify(disposable).clear()
     }
 
     @Test
     fun `given Exit action state should be End`() {
-        given { repository.getChartData() }
-            .willReturn(Observable.just(chartData))
+        val vm = createViewModel()
+        vm.state.observeForever(observer)
 
-        val viewModel = createViewModel()
+        vm.onAction(Action.Exit)
 
-        viewModel.onAction(Action.Exit)
-
-        verify(realState).value = State.End
+        verify(observer).onChanged(State.End)
     }
 
 
     private fun createViewModel(): ChartActivityViewModel {
         return ChartActivityViewModel(
-            realState = realState,
+            realState = MutableLiveData(),
             disposables = disposable,
             mainScheduler = mainScheduler,
             ioScheduler = ioScheduler,
