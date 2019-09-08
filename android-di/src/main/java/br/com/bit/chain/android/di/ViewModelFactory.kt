@@ -22,6 +22,5 @@ class ViewModelFactory
         } catch (e: Exception) {
             throw RuntimeException(e)
         }
-
     }
 }

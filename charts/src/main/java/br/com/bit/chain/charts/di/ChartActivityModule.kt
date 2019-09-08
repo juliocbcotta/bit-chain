@@ -7,11 +7,14 @@ import androidx.preference.PreferenceManager
 import br.com.bit.chain.android.di.ActivityScope
 import br.com.bit.chain.android.di.ViewModelKey
 import br.com.bit.chain.app.BitApplication
-import br.com.bit.chain.charts.data.ChartRepositoryImpl
+import br.com.bit.chain.charts.data.ChartDataRepositoryImpl
+
 import br.com.bit.chain.charts.data.cache.ChartDataLocalCache
 import br.com.bit.chain.charts.data.cache.ChartDataLocalCacheImpl
 import br.com.bit.chain.charts.data.service.ChartDataService
 import br.com.bit.chain.charts.domain.ChartRepository
+import br.com.bit.chain.charts.domain.FetchChartUseCase
+import br.com.bit.chain.charts.domain.FetchChartUseCaseImpl
 import br.com.bit.chain.charts.presentation.ChartActivityViewModel
 import br.com.bit.chain.charts.presentation.State
 import com.google.gson.Gson
@@ -22,7 +25,6 @@ import dagger.multibindings.IntoMap
 import io.reactivex.disposables.CompositeDisposable
 import retrofit2.Retrofit
 import retrofit2.create
-import javax.inject.Named
 
 @Module(includes = [ViewModelModule::class])
 internal class ChartActivityModule {
@@ -33,7 +35,7 @@ internal class ChartActivityModule {
 
     @ActivityScope
     @Provides
-    fun provideRepository(impl: ChartRepositoryImpl): ChartRepository = impl
+    fun provideRepository(impl: ChartDataRepositoryImpl): ChartRepository = impl
 
     @ActivityScope
     @Provides
@@ -57,6 +59,9 @@ internal class ChartActivityModule {
     @Provides
     fun provideDisposables(): CompositeDisposable = CompositeDisposable()
 
+    @ActivityScope
+    @Provides
+    fun provideUseCase(impl: FetchChartUseCaseImpl): FetchChartUseCase = impl
 }
 
 @Module

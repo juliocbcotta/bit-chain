@@ -42,6 +42,7 @@ object Dependencies {
     const val retrofit_rx_adapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
     const val retrofit_gson_converter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val okhttp_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:4.1.1"
+    const val leak_canary = "com.squareup.leakcanary:leakcanary-android:2.0-beta-3"
 
     const val junit = "junit:junit:4.12"
     const val mockito_kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"

@@ -2,6 +2,7 @@ package br.com.bit.chain.components.chart
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
@@ -14,15 +15,20 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.LargeValueFormatter
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class ChartView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     init {
         LayoutInflater.from(context).inflate(R.layout.chart_view, this, true)
     }
 
+    private val dateFormatter = SimpleDateFormat.getDateInstance()
     private val title by lazy { findViewById<TextView>(R.id.titleView) }
     private val subtitle by lazy { findViewById<TextView>(R.id.subtitleView) }
     private val cardview by lazy { findViewById<CardView>(R.id.cardview) }
@@ -36,18 +42,32 @@ class ChartView @JvmOverloads constructor(
         this.subtitle.text = subtitle
     }
 
-    private fun setChartData(values: List<ChartValueUiModel>) {
+    private fun fetchAccentColor(): Int {
+        val typedValue = TypedValue()
+
+        val a = context.obtainStyledAttributes(typedValue.data, intArrayOf(R.attr.colorAccent))
+        val color = a.getColor(0, 0)
+
+        a.recycle()
+
+        return color
+    }
+
+    private fun setChartData(
+        values: List<ChartValueUiModel>,
+        valuesDescription: String
+    ) {
         val entryValues = values.map { value ->
             Entry(value.x, value.y)
         }
-        val dataSet = LineDataSet(entryValues, "")
+        val dataSet = LineDataSet(entryValues, valuesDescription)
             .apply {
+                color = fetchAccentColor()
                 setDrawValues(false)
                 setDrawCircles(false)
                 lineWidth = 2.0f
             }
         val lineData = LineData(dataSet)
-
 
         chart.apply {
             setPinchZoom(false)
@@ -78,6 +98,12 @@ class ChartView @JvmOverloads constructor(
         cardview.visibility = View.VISIBLE
         setTitle(uiModel.title)
         setSubtitle(uiModel.subtitle)
-        setChartData(uiModel.values)
+        setChartData(uiModel.values, format(uiModel.start, uiModel.end))
+    }
+
+    private fun format(start: Date, end: Date): String {
+        val formattedStart = dateFormatter.format(start)
+        val formattedEnd = dateFormatter.format(end)
+        return context.getString(R.string.chart_range, formattedStart, formattedEnd)
     }
 }

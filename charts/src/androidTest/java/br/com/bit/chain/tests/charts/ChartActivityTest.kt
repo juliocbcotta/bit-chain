@@ -6,32 +6,49 @@ import androidx.test.rule.ActivityTestRule
 import br.com.bit.chain.BaseTest
 import br.com.bit.chain.charts.presentation.ChartActivity
 import br.com.bit.chain.pages.ChartPage
+import kotlin.test.assertEquals
 import org.junit.After
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import kotlin.test.assertEquals
-
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 @RunWith(AndroidJUnit4::class)
 class ChartActivityTest : BaseTest() {
 
-    private val chartDataResponseJson = """
+    val calendar = Calendar.getInstance().apply {
+        set(Calendar.YEAR, 2019)
+        set(Calendar.MONTH, 8)
+        set(Calendar.DAY_OF_MONTH, 8)
+        set(Calendar.HOUR, 0)
+        set(Calendar.MINUTE, 0)
+        set(Calendar.SECOND, 0)
+        set(Calendar.MILLISECOND, 0)
+    }
+
+    val x = (calendar.time.time / 1000).toFloat()
+    val x1 = ((calendar.time.time + TimeUnit.DAYS.toSeconds(1) )/ 1000).toFloat()
+    val x2 = ((calendar.time.time + TimeUnit.DAYS.toSeconds(2) )/ 1000).toFloat()
+
+
+    val chartDataResponseJson = """
                     {
                         "name": "name",
                         "description" : "description",
                         "unit" : "unit",
+                        "period": "day",
                         "values" :[
                                 {
-                                 "x" : 1.0,
+                                 "x" : $x,
                                  "y" : 2.0
                                 },
                                  {
-                                 "x" : 2.0,
+                                 "x" : $x1,
                                  "y" : 4.0
                                 },
                                  {
-                                 "x" : 3.0,
+                                 "x" : $x2,
                                  "y" : 6.0
                                 },
                                  {
@@ -44,7 +61,6 @@ class ChartActivityTest : BaseTest() {
     @get:Rule
     var activityRule: ActivityTestRule<ChartActivity> =
         ActivityTestRule(ChartActivity::class.java, false, false)
-
 
     @After
     override fun tearDown() {
@@ -116,5 +132,4 @@ class ChartActivityTest : BaseTest() {
             hasSubtitle("description")
         }
     }
-
 }

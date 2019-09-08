@@ -3,10 +3,8 @@ package br.com.bit.chain
 import android.app.Application
 import android.content.Context
 import androidx.test.runner.AndroidJUnitRunner
-
-import com.squareup.rx2.idler.Rx2Idler
-
 import br.com.bit.chain.app.BitApplication
+import com.squareup.rx2.idler.Rx2Idler
 import io.reactivex.plugins.RxJavaPlugins
 
 class BitTestRunner : AndroidJUnitRunner() {

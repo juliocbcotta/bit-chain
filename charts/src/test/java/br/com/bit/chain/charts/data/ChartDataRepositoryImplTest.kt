@@ -11,12 +11,12 @@ import com.nhaarman.mockitokotlin2.verify
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
+import java.io.IOException
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
-import java.io.IOException
 
 @RunWith(MockitoJUnitRunner::class)
 internal class ChartDataRepositoryImplTest {
@@ -28,7 +28,7 @@ internal class ChartDataRepositoryImplTest {
     lateinit var localCache: ChartDataLocalCache
 
     @InjectMocks
-    lateinit var repository: ChartRepositoryImpl
+    lateinit var repository: ChartDataRepositoryImpl
 
     @Test
     fun `should emit the remote data when local cache is empty`() {
@@ -108,8 +108,5 @@ internal class ChartDataRepositoryImplTest {
             .assertError(exception)
 
         verify(service).fetchChart()
-
     }
-
-
 }

@@ -3,7 +3,7 @@ package br.com.bit.chain.charts.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.bit.chain.charts.domain.ChartRepository
+import br.com.bit.chain.charts.domain.FetchChartUseCase
 import br.com.bit.chain.components.chart.ChartUiModel
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
@@ -28,18 +28,11 @@ internal class ChartActivityViewModel @Inject constructor(
     private val disposables: CompositeDisposable,
     @Named("MainScheduler")
     private val mainScheduler: Scheduler,
-    @Named("IOScheduler")
-    private val ioScheduler: Scheduler,
-    private val repository: ChartRepository
+    private val fetchChartUseCase: FetchChartUseCase
 ) : ViewModel() {
-
 
     // NOTE: The public state is read-only.
     val state: LiveData<State> = realState
-
-    init {
-        onAction(Action.Load)
-    }
 
     fun onAction(action: Action) {
         when (action) {
@@ -56,11 +49,10 @@ internal class ChartActivityViewModel @Inject constructor(
 
     private fun loadChart() {
         realState.value = State.Loading
-        disposables.add(repository.getChartData()
+        disposables.add(fetchChartUseCase.execute()
             .map {
                 it.toChartUiModel()
             }
-            .subscribeOn(ioScheduler)
             .observeOn(mainScheduler)
             .subscribe({ uiModel ->
                 realState.value = State.Success(uiModel)
@@ -69,12 +61,9 @@ internal class ChartActivityViewModel @Inject constructor(
                 realState.value = State.Error
             })
         )
-
-
     }
 
     private fun exit() {
         realState.value = State.End
     }
-
 }
