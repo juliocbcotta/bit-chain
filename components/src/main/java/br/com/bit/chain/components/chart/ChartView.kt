@@ -15,6 +15,8 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.LargeValueFormatter
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ChartView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -24,6 +26,7 @@ class ChartView @JvmOverloads constructor(
         LayoutInflater.from(context).inflate(R.layout.chart_view, this, true)
     }
 
+    private val dateFormatter = SimpleDateFormat.getDateInstance()
     private val title by lazy { findViewById<TextView>(R.id.titleView) }
     private val subtitle by lazy { findViewById<TextView>(R.id.subtitleView) }
     private val cardview by lazy { findViewById<CardView>(R.id.cardview) }
@@ -36,6 +39,7 @@ class ChartView @JvmOverloads constructor(
     private fun setSubtitle(subtitle: String) {
         this.subtitle.text = subtitle
     }
+
     private fun fetchAccentColor(): Int {
         val typedValue = TypedValue()
 
@@ -46,6 +50,7 @@ class ChartView @JvmOverloads constructor(
 
         return color
     }
+
     private fun setChartData(
         values: List<ChartValueUiModel>,
         valuesDescription: String
@@ -92,6 +97,12 @@ class ChartView @JvmOverloads constructor(
         cardview.visibility = View.VISIBLE
         setTitle(uiModel.title)
         setSubtitle(uiModel.subtitle)
-        setChartData(uiModel.values, uiModel.valuesDescription)
+        setChartData(uiModel.values, format(uiModel.start, uiModel.end))
+    }
+
+    private fun format(start: Date, end: Date): String {
+        val formattedStart = dateFormatter.format(start)
+        val formattedEnd = dateFormatter.format(end)
+        return context.getString(R.string.chart_range, formattedStart, formattedEnd)
     }
 }

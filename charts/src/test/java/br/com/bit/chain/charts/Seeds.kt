@@ -10,13 +10,18 @@ import br.com.bit.chain.components.chart.ChartUiModel
 import br.com.bit.chain.components.chart.ChartValueUiModel
 import java.util.*
 
-val date = Calendar.getInstance().apply {
+val calendar = Calendar.getInstance().apply {
     set(Calendar.YEAR, 2019)
     set(Calendar.MONTH, 8)
     set(Calendar.DAY_OF_MONTH, 8)
-}.time
+    set(Calendar.HOUR, 0)
+    set(Calendar.MINUTE, 0)
+    set(Calendar.SECOND, 0)
+    set(Calendar.MILLISECOND, 0)
+}
 
-val x = (date.time / 1000).toFloat()
+val x = (calendar.time.time / 1000).toFloat()
+val date = Date(x.toLong() * 1000)
 
 internal val chartDataResponseJson = """
                     {
@@ -75,7 +80,8 @@ internal val chartData = ChartData(
 internal val chartUiModel = ChartUiModel(
     title = "name",
     subtitle = "description",
-    valuesDescription = "from 08/09/2019 to 08/09/2019",
+    start = date,
+    end = date,
     values = listOf(
         ChartValueUiModel(
             x = x,
