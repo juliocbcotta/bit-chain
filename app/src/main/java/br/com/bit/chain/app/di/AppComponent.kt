@@ -30,5 +30,4 @@ interface AppComponent {
             @Named("BASE_URL") @BindsInstance baseUrl: String
         ): AppComponent
     }
-
 }

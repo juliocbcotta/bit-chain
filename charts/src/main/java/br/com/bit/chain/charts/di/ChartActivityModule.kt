@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.bit.chain.android.di.ActivityScope
 import br.com.bit.chain.android.di.ViewModelKey
-import br.com.bit.chain.charts.data.ChartRepositoryImpl
+import br.com.bit.chain.charts.data.ChartDataRepositoryImpl
 import br.com.bit.chain.charts.data.cache.ChartDataLocalCache
 import br.com.bit.chain.charts.data.cache.ChartDataLocalCacheImpl
 import br.com.bit.chain.charts.data.service.ChartDataService
@@ -19,16 +19,16 @@ import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
 import io.reactivex.disposables.CompositeDisposable
+import javax.inject.Named
 import retrofit2.Retrofit
 import retrofit2.create
-import javax.inject.Named
 
 @Module(includes = [ViewModelModule::class])
 internal class ChartActivityModule {
 
     @ActivityScope
     @Provides
-    fun provideRepository(impl: ChartRepositoryImpl): ChartRepository = impl
+    fun provideRepository(impl: ChartDataRepositoryImpl): ChartRepository = impl
 
     @ActivityScope
     @Provides
@@ -56,7 +56,6 @@ internal class ChartActivityModule {
     @ActivityScope
     @Provides
     fun provideUseCase(impl: FetchChartUseCaseImpl): FetchChartUseCase = impl
-
 }
 
 @Module

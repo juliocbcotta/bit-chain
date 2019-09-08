@@ -2,14 +2,14 @@ package br.com.bit.chain.charts.data
 
 import br.com.bit.chain.charts.data.cache.ChartDataLocalCache
 import br.com.bit.chain.charts.data.service.ChartDataService
-import br.com.bit.chain.charts.domain.toChartData
 import br.com.bit.chain.charts.domain.ChartRepository
 import br.com.bit.chain.charts.domain.models.ChartData
 import br.com.bit.chain.charts.domain.toCharDataDao
+import br.com.bit.chain.charts.domain.toChartData
 import io.reactivex.Observable
 import javax.inject.Inject
 
-internal class ChartRepositoryImpl @Inject constructor(
+internal class ChartDataRepositoryImpl @Inject constructor(
     private val cache: ChartDataLocalCache,
     private val service: ChartDataService
 ) :
@@ -43,7 +43,5 @@ internal class ChartRepositoryImpl @Inject constructor(
             }
             .distinctUntilChanged()
             .toObservable()
-
     }
 }
-

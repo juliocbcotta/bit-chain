@@ -3,15 +3,13 @@ package br.com.bit.chain.charts.data.service
 import br.com.bit.chain.charts.chartDataResponse
 import br.com.bit.chain.charts.chartDataResponseJson
 import br.com.bit.chain.networking.di.NetworkingModule
+import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Test
 import retrofit2.Retrofit
-import okhttp3.mockwebserver.MockResponse
-
 
 class ChartDataServiceTest {
     private val module = NetworkingModule()
-
 
     private fun createRetrofit(url: String): Retrofit {
         return module.provideRetrofit(
@@ -39,5 +37,4 @@ class ChartDataServiceTest {
 
         server.shutdown()
     }
-
 }

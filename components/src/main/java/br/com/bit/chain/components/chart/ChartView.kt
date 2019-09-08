@@ -16,10 +16,12 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.LargeValueFormatter
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 class ChartView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     init {
@@ -66,7 +68,6 @@ class ChartView @JvmOverloads constructor(
                 lineWidth = 2.0f
             }
         val lineData = LineData(dataSet)
-
 
         chart.apply {
             setPinchZoom(false)

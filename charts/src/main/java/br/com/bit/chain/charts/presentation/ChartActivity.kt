@@ -73,6 +73,4 @@ class ChartActivity : AppCompatActivity() {
             .create()
             .show()
     }
-
 }
-

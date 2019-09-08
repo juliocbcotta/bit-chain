@@ -4,8 +4,7 @@ import br.com.bit.chain.charts.domain.models.ChartData
 import br.com.bit.chain.charts.domain.models.ChartDataValue
 import br.com.bit.chain.components.chart.ChartUiModel
 import br.com.bit.chain.components.chart.ChartValueUiModel
-import java.util.*
-
+import java.util.Date
 
 internal fun ChartData.toChartUiModel(): ChartUiModel {
     return ChartUiModel(

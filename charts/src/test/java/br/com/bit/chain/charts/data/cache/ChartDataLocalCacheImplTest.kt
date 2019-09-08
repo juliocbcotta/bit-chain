@@ -4,7 +4,11 @@ import android.content.SharedPreferences
 import br.com.bit.chain.charts.chartDataDao
 import br.com.bit.chain.charts.data.cache.models.ChartDataDao
 import com.google.gson.Gson
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.anyOrNull
+import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.never
+import com.nhaarman.mockitokotlin2.verify
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyString

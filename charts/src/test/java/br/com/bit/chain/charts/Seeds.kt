@@ -2,13 +2,14 @@ package br.com.bit.chain.charts
 
 import br.com.bit.chain.charts.data.cache.models.ChartDataDao
 import br.com.bit.chain.charts.data.cache.models.ChartDataValueDao
-import br.com.bit.chain.charts.domain.models.ChartData
-import br.com.bit.chain.charts.domain.models.ChartDataValue
 import br.com.bit.chain.charts.data.service.models.ChartDataResponse
 import br.com.bit.chain.charts.data.service.models.ChartDataValueResponse
+import br.com.bit.chain.charts.domain.models.ChartData
+import br.com.bit.chain.charts.domain.models.ChartDataValue
 import br.com.bit.chain.components.chart.ChartUiModel
 import br.com.bit.chain.components.chart.ChartValueUiModel
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 
 val calendar = Calendar.getInstance().apply {
     set(Calendar.YEAR, 2019)

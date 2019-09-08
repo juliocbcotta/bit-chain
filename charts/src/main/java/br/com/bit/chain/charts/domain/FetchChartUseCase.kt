@@ -13,7 +13,8 @@ internal interface FetchChartUseCase {
 internal class FetchChartUseCaseImpl @Inject constructor(
     @Named("IOScheduler")
     private val ioScheduler: Scheduler,
-    private val repository: ChartRepository) :
+    private val repository: ChartRepository
+) :
     FetchChartUseCase {
     override fun execute(): Observable<ChartData> {
         return repository.getChartData()

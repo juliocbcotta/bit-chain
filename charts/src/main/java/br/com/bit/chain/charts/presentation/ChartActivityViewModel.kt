@@ -31,7 +31,6 @@ internal class ChartActivityViewModel @Inject constructor(
     private val fetchChartUseCase: FetchChartUseCase
 ) : ViewModel() {
 
-
     // NOTE: The public state is read-only.
     val state: LiveData<State> = realState
 
@@ -61,12 +60,9 @@ internal class ChartActivityViewModel @Inject constructor(
                 realState.value = State.Error
             })
         )
-
-
     }
 
     private fun exit() {
         realState.value = State.End
     }
-
 }

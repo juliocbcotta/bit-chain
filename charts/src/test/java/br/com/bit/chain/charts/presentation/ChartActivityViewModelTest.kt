@@ -13,12 +13,12 @@ import com.nhaarman.mockitokotlin2.verify
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import java.io.IOException
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
-import java.io.IOException
 
 @RunWith(MockitoJUnitRunner::class)
 internal class ChartActivityViewModelTest {
@@ -64,7 +64,6 @@ internal class ChartActivityViewModelTest {
 
         verify(observer).onChanged(State.Loading)
         verify(observer).onChanged(State.Error)
-
     }
 
     @Test
@@ -115,7 +114,6 @@ internal class ChartActivityViewModelTest {
         verify(observer).onChanged(State.End)
     }
 
-
     private fun createViewModel(): ChartActivityViewModel {
         return ChartActivityViewModel(
             realState = MutableLiveData(),
@@ -124,6 +122,4 @@ internal class ChartActivityViewModelTest {
             fetchChartUseCase = fetchChartUseCase
         )
     }
-
-
 }

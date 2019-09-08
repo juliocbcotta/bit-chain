@@ -20,12 +20,10 @@ class AppModule {
     @Provides
     fun provideLoggable(): Boolean = BuildConfig.DEBUG
 
-
     @Singleton
     @Provides
     fun provideSharedPreferences(app: BitApplication): SharedPreferences =
         PreferenceManager.getDefaultSharedPreferences(app)
-
 
     @Singleton
     @Named("MainScheduler")

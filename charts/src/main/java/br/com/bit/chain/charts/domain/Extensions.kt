@@ -24,7 +24,6 @@ internal fun ChartDataValueResponse.toChartDataValue() =
         y = y
     )
 
-
 internal fun ChartDataDao.toChartData() =
     ChartData(
         name = name,

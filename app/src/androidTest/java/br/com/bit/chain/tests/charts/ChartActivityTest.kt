@@ -6,12 +6,11 @@ import androidx.test.rule.ActivityTestRule
 import br.com.bit.chain.BaseTest
 import br.com.bit.chain.charts.presentation.ChartActivity
 import br.com.bit.chain.pages.ChartPage
+import kotlin.test.assertEquals
 import org.junit.After
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import kotlin.test.assertEquals
-
 
 @RunWith(AndroidJUnit4::class)
 class ChartActivityTest : BaseTest() {
@@ -20,9 +19,8 @@ class ChartActivityTest : BaseTest() {
     var activityRule: ActivityTestRule<ChartActivity> =
         ActivityTestRule(ChartActivity::class.java, false, false)
 
-
     @After
-    override fun tearDown(){
+    override fun tearDown() {
         super.tearDown()
         activityRule.finishActivity()
     }
@@ -91,5 +89,4 @@ class ChartActivityTest : BaseTest() {
             hasSubtitle("description")
         }
     }
-
 }

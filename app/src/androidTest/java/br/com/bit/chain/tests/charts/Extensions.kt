@@ -3,7 +3,6 @@ package br.com.bit.chain.tests.charts
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 
-
 val chartDataResponseJson = """
                     {
                         "name": "name",
