@@ -23,20 +23,22 @@ private fun formatValuesDescription(
     values: List<ChartDataValue>,
     period: String
 ): String {
-
     return when (period) {
         "day" -> {
-            val dateFormatter = SimpleDateFormat.getDateInstance()
-            val start = Date(values.first().x.toLong() * 1000)
-            val end = Date(values.last().x.toLong() * 1000)
-            val formattedStart = dateFormatter.format(start)
-            val formattedEnd = dateFormatter.format(end)
-            "from $formattedStart to $formattedEnd"
+            val start = formatAsDate(values.first().x.toLong())
+            val end = formatAsDate(values.last().x.toLong())
+            "from $start to $end"
         }
         else ->
             "N/A"
     }
 
+}
+
+private fun formatAsDate(x: Long): String {
+    val dateFormatter = SimpleDateFormat.getDateInstance()
+    val date = Date(x * 1000)
+    return dateFormatter.format(date)
 }
 
 internal fun ChartDataValue.toChartValueUiModel(): ChartValueUiModel {
