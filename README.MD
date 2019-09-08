@@ -2,6 +2,7 @@
 
 This project loads and shows a chart of the Market Price (USD) to the blockchain. Yeah, just one chart, I said it is small...
 
+<img src="https://github.com/BugsBunnyBR/bit-chain/raw/master/screenshot.png" width="50%"/>
 
 While the feature is simple, the project is a showcase for an Android architecture
 for a multi-module project with a mixed approach for organization, with **feature**[1] and **support** modules.
