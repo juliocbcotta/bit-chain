@@ -58,8 +58,6 @@ dependencies {
     implementation project(':android-di')
     implementation project(':networking')
 
-    debugImplementation Dependencies.leak_canary
-
     implementation Dependencies.kotlin
 
     // Android X
