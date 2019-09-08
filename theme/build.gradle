@@ -2,6 +2,6 @@ apply from: "../android-library-module.gradle"
 
 dependencies {
 
-    //Android X
+    // Android X
     implementation Dependencies.androidx_appcompat
 }

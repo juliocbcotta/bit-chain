@@ -5,7 +5,7 @@ dependencies {
 
     implementation Dependencies.kotlin
 
-    //Android X
+    // Android X
     implementation Dependencies.androidx_appcompat
     implementation Dependencies.androidx_cardview
     implementation Dependencies.androidx_constraint_layout

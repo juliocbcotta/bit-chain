@@ -31,7 +31,7 @@ class ChartView @JvmOverloads constructor(
     private val dateFormatter = SimpleDateFormat.getDateInstance()
     private val title by lazy { findViewById<TextView>(R.id.titleView) }
     private val subtitle by lazy { findViewById<TextView>(R.id.subtitleView) }
-    private val cardview by lazy { findViewById<CardView>(R.id.cardview) }
+    private val cardView by lazy { findViewById<CardView>(R.id.cardview) }
     private val chart by lazy { findViewById<LineChart>(R.id.chart) }
 
     private fun setTitle(title: String) {
@@ -95,7 +95,7 @@ class ChartView @JvmOverloads constructor(
     }
 
     fun setUiModel(uiModel: ChartUiModel) {
-        cardview.visibility = View.VISIBLE
+        cardView.visibility = View.VISIBLE
         setTitle(uiModel.title)
         setSubtitle(uiModel.subtitle)
         setChartData(uiModel.values, format(uiModel.start, uiModel.end))
