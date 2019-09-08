@@ -44,8 +44,9 @@ class ChartView @JvmOverloads constructor(
 
     private fun fetchAccentColor(): Int {
         val typedValue = TypedValue()
-
-        val a = context.obtainStyledAttributes(typedValue.data, intArrayOf(R.attr.colorAccent))
+        // WORKAROUND: Don't know why, but it needs to be br.com.bit.chain.theme.R.attr.colorAccent
+        // or the app will break at runtime.
+        val a = context.obtainStyledAttributes(typedValue.data, intArrayOf(br.com.bit.chain.theme.R.attr.colorAccent))
         val color = a.getColor(0, 0)
 
         a.recycle()

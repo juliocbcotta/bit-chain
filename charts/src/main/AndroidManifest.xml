@@ -4,7 +4,9 @@
     package="br.com.bit.chain.charts">
 
     <application tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".presentation.ChartActivity" />
+        <activity
+            android:name=".presentation.ChartActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
     <dist:module
