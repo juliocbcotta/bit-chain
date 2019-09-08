@@ -2,6 +2,7 @@ package br.com.bit.chain.components.chart
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
@@ -35,13 +36,26 @@ class ChartView @JvmOverloads constructor(
     private fun setSubtitle(subtitle: String) {
         this.subtitle.text = subtitle
     }
+    private fun fetchAccentColor(): Int {
+        val typedValue = TypedValue()
 
-    private fun setChartData(values: List<ChartValueUiModel>) {
+        val a = context.obtainStyledAttributes(typedValue.data, intArrayOf(R.attr.colorAccent))
+        val color = a.getColor(0, 0)
+
+        a.recycle()
+
+        return color
+    }
+    private fun setChartData(
+        values: List<ChartValueUiModel>,
+        valuesDescription: String
+    ) {
         val entryValues = values.map { value ->
             Entry(value.x, value.y)
         }
-        val dataSet = LineDataSet(entryValues, "")
+        val dataSet = LineDataSet(entryValues, valuesDescription)
             .apply {
+                color = fetchAccentColor()
                 setDrawValues(false)
                 setDrawCircles(false)
                 lineWidth = 2.0f
@@ -78,6 +92,6 @@ class ChartView @JvmOverloads constructor(
         cardview.visibility = View.VISIBLE
         setTitle(uiModel.title)
         setSubtitle(uiModel.subtitle)
-        setChartData(uiModel.values)
+        setChartData(uiModel.values, uiModel.valuesDescription)
     }
 }
