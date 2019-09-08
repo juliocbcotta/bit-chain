@@ -12,6 +12,7 @@ internal fun ChartDataResponse.toCharDataDao() =
         name = name,
         description = description,
         unit = unit,
+        period = period,
         values = values.map {
             it.toChartDataValue()
         }
@@ -29,6 +30,7 @@ internal fun ChartDataDao.toChartData() =
         name = name,
         description = description,
         unit = unit,
+        period = period,
         values = values.map {
             it.toChartDataValue()
         }
