@@ -66,6 +66,9 @@ This folder contains the definitions of the app Gradle dependencies and some bui
 If you look at the source code and find some `Extensions.kt` files, 
 they contain extension functions that execute mapping from a lower layer model to the current layer model.
 
+### ktlint and detekt
+Both tools are applied to the project with mostly of the standard configurations.
+
 ### Libraries
 - Kotlin
 - CardView
@@ -82,6 +85,7 @@ they contain extension functions that execute mapping from a lower layer model t
 - RxIdler
 - Mockito inline and Mockito Kotlin
 - MockWebServer
+- ktlint and detekt
 
 ### Other
 I worked a bit in a version of this project with dynamic delivery[2] in the branch `delivery`, but I got stuck with some annoyances like
