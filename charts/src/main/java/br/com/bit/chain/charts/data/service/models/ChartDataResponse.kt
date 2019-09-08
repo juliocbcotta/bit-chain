@@ -1,4 +1,4 @@
-package br.com.bit.chain.charts.data.models
+package br.com.bit.chain.charts.data.service.models
 
 internal data class ChartDataResponse(
     val name: String,
