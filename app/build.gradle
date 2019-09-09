@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply from: "../android-module.gradle"
+apply from: "$rootDir/build-system/android-module.gradle"
 
 android {
     defaultConfig {

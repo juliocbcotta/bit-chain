@@ -1,4 +1,4 @@
-apply from: "../android-library-module.gradle"
+apply from: "$rootDir/build-system/android-library-module.gradle"
 
 dependencies {
     implementation project(":theming")
