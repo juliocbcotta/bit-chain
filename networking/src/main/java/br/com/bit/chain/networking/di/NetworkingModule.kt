@@ -17,7 +17,7 @@ class NetworkingModule {
 
     @Provides
     @Singleton
-    @Named("NETWORKING")
+    @Named(NAMED_GSON_FOR_NETWORKING)
     fun provideGson(): Gson {
         return Gson()
     }
@@ -61,5 +61,9 @@ class NetworkingModule {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
+    }
+
+    companion object {
+        const val NAMED_GSON_FOR_NETWORKING = "NETWORKING"
     }
 }

@@ -40,7 +40,7 @@ internal class ChartActivityModule {
 
     @Provides
     @ActivityScope
-    @Named("CACHE")
+    @Named(NAMED_GSON_FOR_CACHE)
     fun provideGson(): Gson {
         return Gson()
     }
@@ -56,6 +56,10 @@ internal class ChartActivityModule {
     @ActivityScope
     @Provides
     fun provideUseCase(impl: FetchChartUseCaseImpl): FetchChartUseCase = impl
+
+    companion object {
+        const val NAMED_GSON_FOR_CACHE = "CACHE"
+    }
 }
 
 @Module
