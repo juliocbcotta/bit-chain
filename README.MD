@@ -87,15 +87,8 @@ Both tools are applied to the project with mostly of the standard configurations
 - MockWebServer
 - ktlint and detekt
 
-### Other
-I worked a bit in a version of this project with dynamic delivery[2] in the branch `delivery`, but I got stuck with some annoyances like
-MockWebServer refuses to serve for tests in a dynamic feature module[3] and AS simple can't debug instrumented tests that are located in a dynamic feature[4].
-I will try to come back to that approach in the future as it enforces a better separation of concerns and DI graph when compared with my current solution. 
 
-[2] In that branch, the `:charts` module does apply dynamic feature plugin, but it's installed at app install time for simplicity, 
-the restrictions in regards to navigation, DI and project organization
-are the base for a module that would be installed at a later moment.
-
-[3] https://github.com/square/okhttp/issues/5430
-
-[4] https://issuetracker.google.com/issues/115569342
+### TODO
+- Improve error handling with proper differentiation of errors.
+- create a cache module with a simple abstraction over SharedPreferences.
+ 
