@@ -15,8 +15,7 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.LargeValueFormatter
-import java.text.SimpleDateFormat
-import java.util.Date
+
 
 class ChartView @JvmOverloads constructor(
     context: Context,
@@ -28,7 +27,7 @@ class ChartView @JvmOverloads constructor(
         LayoutInflater.from(context).inflate(R.layout.chart_view, this, true)
     }
 
-    private val dateFormatter = SimpleDateFormat.getDateInstance()
+    private val formatter = ChartViewDateFormatter()
     private val title by lazy { findViewById<TextView>(R.id.titleView) }
     private val subtitle by lazy { findViewById<TextView>(R.id.subtitleView) }
     private val cardView by lazy { findViewById<CardView>(R.id.cardview) }
@@ -98,12 +97,9 @@ class ChartView @JvmOverloads constructor(
         cardView.visibility = View.VISIBLE
         setTitle(uiModel.title)
         setSubtitle(uiModel.subtitle)
-        setChartData(uiModel.values, format(uiModel.start, uiModel.end))
+        val formattedDescription = formatter.format(context, uiModel.start, uiModel.end)
+        setChartData(uiModel.values, formattedDescription)
     }
 
-    private fun format(start: Date, end: Date): String {
-        val formattedStart = dateFormatter.format(start)
-        val formattedEnd = dateFormatter.format(end)
-        return context.getString(R.string.chart_range, formattedStart, formattedEnd)
-    }
+
 }
