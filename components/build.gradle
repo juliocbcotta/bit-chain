@@ -1,7 +1,7 @@
 apply from: "../android-library-module.gradle"
 
 dependencies {
-    implementation project(":theme")
+    implementation project(":theming")
 
     implementation Dependencies.kotlin
 

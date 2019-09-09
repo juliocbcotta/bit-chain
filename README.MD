@@ -13,7 +13,7 @@ for a multi-module project with a mixed approach for organization, with **featur
  - `:app` module contains the app Application class, a Dagger AppComponent and it bundles together some Dagger modules to make the provided dependencies available to children subcomponents.
  - `:networking` module is mostly empty but defines a Dagger module that configures the network libraries. In a more complex app it would have custom interceptors, adapters and converters.
  - `:components` module is meant to have custom views like `ChartView` that are standardized through the app.
- - `:theme` module is meant to a central place to share the `AppTheme` across modules.
+ - `:theming` module is meant to a central place to share the `AppTheme` across modules.
  - `:android-di` module contains Dagger annotations and a `ViewModelFactory`.
  
  #### Feature module

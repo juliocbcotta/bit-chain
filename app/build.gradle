@@ -50,7 +50,7 @@ android {
 }
 
 dependencies {
-    implementation project(':theme')
+    implementation project(':theming')
     implementation project(':android-di')
     implementation project(':networking')
     implementation project(':charts')

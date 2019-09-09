@@ -1,9 +1,9 @@
 package br.com.bit.chain.tests.charts
 
+import java.util.Calendar
+import java.util.concurrent.TimeUnit
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
-import java.util.*
-import java.util.concurrent.TimeUnit
 
 val calendar = Calendar.getInstance().apply {
     set(Calendar.YEAR, 2019)
@@ -16,9 +16,8 @@ val calendar = Calendar.getInstance().apply {
 }
 
 val x = (calendar.time.time / 1000).toFloat()
-val x1 = ((calendar.time.time + TimeUnit.DAYS.toSeconds(1) )/ 1000).toFloat()
-val x2 = ((calendar.time.time + TimeUnit.DAYS.toSeconds(2) )/ 1000).toFloat()
-
+val x1 = ((calendar.time.time + TimeUnit.DAYS.toSeconds(1)) / 1000).toFloat()
+val x2 = ((calendar.time.time + TimeUnit.DAYS.toSeconds(2)) / 1000).toFloat()
 
 val chartDataResponseJson = """
                     {
